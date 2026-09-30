@@ -1,0 +1,112 @@
+{
+  "schemaVersion": "asset-usage-1",
+  "version": "1.0.0",
+  "assetId": "file-5f8974ea-34a1-427a-b6cf-d21ef2ba0a19",
+  "assetVersion": "1.0.0",
+  "summary": "蓝色点阵球体变化，中心有明确主体。",
+  "useWhen": [
+    "需要现成动态光效或纹理作为画面底层"
+  ],
+  "avoidWhen": [
+    "需要修改素材内部光效、物体或文字的独立图层"
+  ],
+  "parameters": [
+    {
+      "key": "fit",
+      "label": "填充方式",
+      "mode": "consumer",
+      "binding": "目标 Img / OffthreadVideo 的 style.objectFit",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "cover",
+          "contain"
+        ]
+      },
+      "default": "contain",
+      "note": "cover 可能裁切；contain 保留完整图像但可能留边。"
+    },
+    {
+      "key": "muted",
+      "label": "背景静音",
+      "mode": "consumer",
+      "binding": "目标 OffthreadVideo 的 muted",
+      "schema": {
+        "type": "boolean"
+      },
+      "default": true,
+      "note": "原文件保留音轨；工作台预览静音，目标工程需显式设置。"
+    }
+  ],
+  "variants": [
+    {
+      "id": "file",
+      "kind": "background",
+      "file": "/uploads/file-5f8974ea-34a1-427a-b6cf-d21ef2ba0a19.mp4",
+      "sha256": "91a5a3953fc02275bc69fecaebb56be00ae1b4e7d38465f7347c42a3a6faea5b",
+      "media": {
+        "width": 720,
+        "height": 720,
+        "duration": 9.498005,
+        "fps": "3746/125",
+        "hasAudio": true,
+        "sha256": "91a5a3953fc02275bc69fecaebb56be00ae1b4e7d38465f7347c42a3a6faea5b"
+      }
+    }
+  ],
+  "invocation": {
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "variant": {
+          "type": "string",
+          "enum": [
+            "file"
+          ]
+        }
+      },
+      "required": [
+        "variant"
+      ],
+      "additionalProperties": false
+    },
+    "example": {
+      "variant": "file"
+    }
+  },
+  "limitations": [
+    "中心球体不可随意裁切；建议 contain 保留完整轮廓。",
+    "按原始画幅导入，未生成独立横竖屏构图版本；填充裁切不等于完成适配。",
+    "保留原文件像素与音轨，媒体内部内容不可分层编辑。"
+  ],
+  "evidence": {
+    "level": "file-import-and-sample-review",
+    "source": "Eagle 原文件",
+    "metadata": "ffprobe",
+    "sha256": "91a5a3953fc02275bc69fecaebb56be00ae1b4e7d38465f7347c42a3a6faea5b",
+    "visual": "四个分散时间点画面检查，非全片逐帧检查。"
+  },
+  "name": "蓝底点阵球体",
+  "keywords": [
+    "Eagle背景",
+    "动态背景",
+    "科技"
+  ],
+  "capacity": "单个720 × 720媒体文件，不含可编辑文字槽位。",
+  "duration": {
+    "seconds": 9.498005,
+    "policy": "source-media",
+    "note": "保留原时长；裁剪、速度和循环由目标工程决定，未验证无缝循环。"
+  },
+  "dependencies": [
+    "目标 Remotion 工程的 Img 或 OffthreadVideo 媒体加载组件"
+  ],
+  "styleCompatibility": {
+    "automaticBinding": false,
+    "note": "媒体已烘焙，不能传风格 ID 改变内部配色。"
+  },
+  "documents": {
+    "json": "/usage/file-5f8974ea-34a1-427a-b6cf-d21ef2ba0a19-1.0.0.json",
+    "markdown": "/usage/file-5f8974ea-34a1-427a-b6cf-d21ef2ba0a19-1.0.0.md"
+  }
+}

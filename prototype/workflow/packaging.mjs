@@ -1,0 +1,14 @@
+import {assertUsage,usageMarkdown} from './usage-contract.mjs';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {execFile} from 'node:child_process';
+import {promisify} from 'node:util';
+const exec=promisify(execFile);
+export async function bundle(root,p,assets,outputDir=path.join(root,'packages')){for(const a of assets)assertUsage(a);const dest=path.join(outputDir,p.id+'-'+(p.libraryVersion||'1.0.0'));if(await fs.stat(dest).catch(()=>null)||await fs.stat(dest+'.zip').catch(()=>null))throw new Error('已发布包不可覆盖，请提高 libraryVersion');await fs.mkdir(dest,{recursive:true});const snapshot=path.resolve(root,p.revisions.at(-1).snapshot);if(!snapshot.startsWith(path.join(root,'data/revisions')+path.sep))throw new Error('运行快照路径无效');await fs.cp(path.join(snapshot,'src'),path.join(dest,'src'),{recursive:true});await fs.copyFile(path.join(snapshot,'tsconfig.json'),path.join(dest,'tsconfig.json'));const pkg=JSON.parse(await fs.readFile(path.join(snapshot,'package.json'),'utf8'));const lens=pkg.motionArchive?.pipeline==='fisheye-two-pass';if(await fs.stat(path.join(snapshot,'public')).catch(()=>null))await fs.cp(path.join(snapshot,'public'),path.join(dest,'public'),{recursive:true});const composition=pkg.motionArchive?.compositionId||(lens?'FinqubeFisheye':'FinqubeStudy');const renderCommand=(pkg.motionArchive?.renderScript?`node ${pkg.motionArchive.renderScript} out.mp4`:null)||(lens?'node src/render.mjs out.mp4':`remotion render src/index.ts ${composition} out.mp4`);pkg.scripts={studio:'remotion studio src/index.ts',render:renderCommand,typecheck:'tsc --noEmit'};await fs.writeFile(path.join(dest,'package.json'),JSON.stringify(pkg,null,2));
+ await fs.writeFile(path.join(dest,'manifest.json'),JSON.stringify({schemaVersion:1,projectId:p.id,assets,compositionId:composition,entry:'src/index.ts',install:'npm install',render:'npm run render',reference:{...p.source,path:undefined},segment:p.segment},null,2));
+ const cfg=p.videoConfig||{durationInFrames:360,fps:60,width:720,height:1280};
+ await fs.writeFile(path.join(dest,'README.md'),`# ${p.title}\n\nInstall: npm install\nRender: npm run render\nStudio: npm run studio\n\n${(cfg.durationInFrames/cfg.fps).toFixed(3)} seconds / ${cfg.fps} FPS / ${cfg.width} × ${cfg.height}.\nComposition: ${composition}. Source: approved ${p.revisions.at(-1).id}.\n\n${p.revisions.at(-1).limitations.map(x=>'- '+x).join('\n')}\n\nSee manifest.json for runtime and editable component information.\n`);
+
+ await fs.writeFile(path.join(dest,'usage-contracts.json'),JSON.stringify(assets.map(a=>a.usageContract),null,2));
+ await fs.writeFile(path.join(dest,'USAGE.md'),assets.map(a=>usageMarkdown(a.usageContract)).join('\n\n---\n\n'));
+ const zip=dest+'.zip';await exec('/usr/bin/zip',['-qr',zip,path.basename(dest)],{cwd:path.dirname(dest)});return '/packages/'+path.basename(zip);}

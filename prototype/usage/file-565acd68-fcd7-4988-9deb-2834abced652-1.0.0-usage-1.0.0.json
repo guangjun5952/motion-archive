@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "asset-usage-1",
+  "version": "1.0.0",
+  "assetId": "file-565acd68-fcd7-4988-9deb-2834abced652",
+  "assetVersion": "1.0.0",
+  "summary": "作为目标工程的字体文件加载，使用前检查实际字形覆盖。",
+  "useWhen": [
+    "需要当前字体外观的主体文字或标签"
+  ],
+  "avoidWhen": [
+    "未经检查直接认定支持所有中文、英文或字重"
+  ],
+  "parameters": [
+    {
+      "key": "fontFamily",
+      "label": "加载后的字体名称",
+      "mode": "consumer",
+      "binding": "FontFace + document.fonts.add；目标组件 fontFamily",
+      "default": "Archive_file_565acd68_fcd7_4988_9deb_2834abced652"
+    }
+  ],
+  "variants": [
+    {
+      "id": "file",
+      "kind": "font",
+      "file": "/uploads/file-565acd68-fcd7-4988-9deb-2834abced652.ttf"
+    }
+  ],
+  "invocation": {
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "variant": {
+          "type": "string",
+          "enum": [
+            "file"
+          ]
+        }
+      },
+      "required": [
+        "variant"
+      ],
+      "additionalProperties": false
+    },
+    "example": {
+      "variant": "file"
+    }
+  },
+  "limitations": [
+    "字形覆盖和授权范围未自动验证；字体替换后检查换行及排版。"
+  ],
+  "evidence": {
+    "level": "file-import",
+    "originalName": "vert.ttf"
+  },
+  "name": "Vert"
+}

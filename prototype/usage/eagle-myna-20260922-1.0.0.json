@@ -1,0 +1,324 @@
+{
+  "schemaVersion": "asset-usage-1",
+  "version": "1.0.0",
+  "assetId": "eagle-myna-20260922",
+  "assetVersion": "1.0.0",
+  "name": "Myna · AI 提问与括号排字",
+  "summary": "5.43秒参考重建。输入问题并收缩字号 → 括号收束 → AI Agent逐字落位 → 白底花括号与三个术语。",
+  "useWhen": [
+    "产品开场提问、AI Agent 和开发流程引入"
+  ],
+  "avoidWhen": [
+    "无限长文字、任意插入更多问题而不重编时序"
+  ],
+  "keywords": [
+    "Eagle",
+    "2026-09-22",
+    "myna",
+    "横屏",
+    "竖屏",
+    "纯动效",
+    "产品开场提问、AI Agent 和开发流程引入"
+  ],
+  "capacity": "一个27字符问题、一个9字符短词和3个结尾术语；长度是原稿数量，不代表通用安全上限。 文案在镜头源码内修改；新文字需要测量和视觉复核，未开放自动排版参数。",
+  "duration": {
+    "seconds": 5.433333333333334,
+    "frames": 163,
+    "fps": 30,
+    "policy": "fixed",
+    "note": "改变总时长需同时调整各镜头时点、曝光和原音轨，不提供 duration prop。"
+  },
+  "parameters": [
+    {
+      "key": "variant",
+      "label": "画幅和绘制模式",
+      "mode": "selection",
+      "binding": "src/Root.tsx :: Root / Composition",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "styled-portrait",
+          "motion-portrait",
+          "styled",
+          "motion"
+        ]
+      },
+      "default": "styled",
+      "note": "每个变体有独立包；修改 Composition 尺寸不能代替适配。"
+    },
+    {
+      "key": "sceneCopy",
+      "label": "逐镜文案修改说明",
+      "mode": "source-edit",
+      "binding": "src/Myna.tsx :: Myna",
+      "schema": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      },
+      "note": "这是派生源码的修改要求，不是运行时 prop。需逐处替换字面量、检查容量，再由同一时序生成几何版。"
+    },
+    {
+      "key": "motionCurves",
+      "label": "弹簧与缓动源码",
+      "mode": "source-edit",
+      "binding": "src/math.ts :: bounce / ease / track",
+      "schema": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1000
+      },
+      "note": "按镜头调整调用值；不是全片统一阻尼参数，也没有自动修改器。"
+    }
+  ],
+  "variants": [
+    {
+      "id": "styled-portrait",
+      "kind": "template",
+      "aspect": "portrait",
+      "mode": "styled",
+      "package": "/packages/eagle-myna-20260922-portrait-styled-1.0.0.zip",
+      "runtime": {
+        "entry": "src/index.ts",
+        "file": "src/Root.tsx",
+        "export": "Film",
+        "compositionId": "myna-portrait-styled",
+        "render": "npm run render",
+        "pipeline": "svg-temporal-5",
+        "sceneFile": "src/Myna.tsx",
+        "sceneExport": "Myna"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "package.json :: scripts.render",
+      "video": {
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "durationInFrames": 163
+      },
+      "preview": "/workflow/media/eagle-myna-20260922-portrait-styled-1.0.0.mp4",
+      "packageSha256": "08464c8c10e3df19c2094fe135a5bba12470d7655934437de73d032b651eb182"
+    },
+    {
+      "id": "motion-portrait",
+      "kind": "template",
+      "aspect": "portrait",
+      "mode": "motion",
+      "package": "/packages/eagle-myna-20260922-portrait-motion-1.0.0.zip",
+      "runtime": {
+        "entry": "src/index.ts",
+        "file": "src/Root.tsx",
+        "export": "Film",
+        "compositionId": "myna-portrait-motion",
+        "render": "npm run render",
+        "pipeline": "svg-temporal-5",
+        "sceneFile": "src/Myna.tsx",
+        "sceneExport": "Myna"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "package.json :: scripts.render",
+      "video": {
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "durationInFrames": 163
+      },
+      "preview": "/workflow/media/eagle-myna-20260922-portrait-motion-1.0.0.mp4",
+      "packageSha256": "c8c7935aa2abcc63f1d3dafec2cd280a49b0e9d28acde068a651fc33ec488a72"
+    },
+    {
+      "id": "styled",
+      "kind": "template",
+      "aspect": "landscape",
+      "mode": "styled",
+      "package": "/packages/eagle-myna-20260922-landscape-styled-1.0.0.zip",
+      "runtime": {
+        "entry": "src/index.ts",
+        "file": "src/Root.tsx",
+        "export": "Film",
+        "compositionId": "myna-landscape-styled",
+        "render": "npm run render",
+        "pipeline": "svg-temporal-5",
+        "sceneFile": "src/Myna.tsx",
+        "sceneExport": "Myna"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "package.json :: scripts.render",
+      "video": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "durationInFrames": 163
+      },
+      "preview": "/workflow/media/eagle-myna-20260922-landscape-styled-1.0.0.mp4",
+      "packageSha256": "e85977d8d27a0b6e0cfc0a70d0607075ac52e9f7ab6ff76cb0a0255cb9b6692a"
+    },
+    {
+      "id": "motion",
+      "kind": "template",
+      "aspect": "landscape",
+      "mode": "motion",
+      "package": "/packages/eagle-myna-20260922-landscape-motion-1.0.0.zip",
+      "runtime": {
+        "entry": "src/index.ts",
+        "file": "src/Root.tsx",
+        "export": "Film",
+        "compositionId": "myna-landscape-motion",
+        "render": "npm run render",
+        "pipeline": "svg-temporal-5",
+        "sceneFile": "src/Myna.tsx",
+        "sceneExport": "Myna"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "package.json :: scripts.render",
+      "video": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "durationInFrames": 163
+      },
+      "preview": "/workflow/media/eagle-myna-20260922-landscape-motion-1.0.0.mp4",
+      "packageSha256": "890bda2e37ac9db8987aeb78d4018bdc19ab8dbc518d543a51e33b8ba524274c"
+    }
+  ],
+  "invocation": {
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "variant": {
+          "type": "string",
+          "enum": [
+            "styled-portrait",
+            "motion-portrait",
+            "styled",
+            "motion"
+          ]
+        },
+        "sourceInputs": {
+          "type": "object",
+          "properties": {
+            "sceneCopy": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "motionCurves": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "variant"
+      ],
+      "additionalProperties": false
+    },
+    "example": {
+      "variant": "styled"
+    }
+  },
+  "styleCompatibility": {
+    "automaticBinding": false,
+    "referenceStyleIds": [],
+    "note": "复刻外观随模板入口保存；材质、字体、背景在组件中显式绘制。几何分支可用于迁移运动，但未提供跨风格自动绑定。"
+  },
+  "limitations": [
+    "括号的立体材质简化为矢量轮廓，光晕近似。",
+    "输入与转场时点按参考采样估计，非原 AE 关键帧恢复。",
+    "全部运动由帧时间决定；时点来自每秒2帧分镜采样及关键片段检查，不是原始关键帧恢复。",
+    "五子帧曝光累积保留速度方向拖尾；局部景深为分层模糊近似，非光线追踪。",
+    "纯动效入口替换文字/图像/材质为几何占位；源包仍含复刻绘制分支，不支持传 styleId 自动换风格。",
+    "横竖屏均有指定布局；不保证其他画幅或任意长度文字自动适配。",
+    "嵌入时须保留 src/Root.tsx 的 Film 曝光容器；直接使用单帧 Scene 组件会绕开运动模糊。"
+  ],
+  "evidence": {
+    "level": "agent-keyframe-and-continuous-sample-review",
+    "referenceSampling": "0.5 seconds; denser rendered transition samples at 15fps",
+    "source": "manifest.json / original Eagle file",
+    "render": {
+      "temporalSamples": 5,
+      "offsetsInFrames": [
+        -0.26,
+        -0.13,
+        0,
+        0.13,
+        0.26
+      ],
+      "exposureSpanFrames": 0.52
+    },
+    "userVisualApproval": false,
+    "record": "VERIFICATION.md",
+    "checkedAt": "2026-09-22T05:53:31.773Z",
+    "mediaChecks": {
+      "portrait-styled": {
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "frames": 163,
+        "audio": true,
+        "coverageFrames": [
+          18,
+          49,
+          86,
+          136
+        ],
+        "coverageImage": "./imports/eagle-20260922/verification/myna-portrait-styled-coverage.jpg"
+      },
+      "portrait-motion": {
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "frames": 163,
+        "audio": false,
+        "coverageFrames": [
+          18,
+          49,
+          86,
+          136
+        ],
+        "coverageImage": "./imports/eagle-20260922/verification/myna-portrait-motion-coverage.jpg"
+      },
+      "landscape-styled": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "frames": 163,
+        "audio": true,
+        "coverageFrames": [
+          18,
+          49,
+          86,
+          136
+        ],
+        "coverageImage": "./imports/eagle-20260922/verification/myna-landscape-styled-coverage.jpg"
+      },
+      "landscape-motion": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "frames": 163,
+        "audio": false,
+        "coverageFrames": [
+          18,
+          49,
+          86,
+          136
+        ],
+        "coverageImage": "./imports/eagle-20260922/verification/myna-landscape-motion-coverage.jpg"
+      }
+    },
+    "visualReview": "每镜中点构图抽样、原画幅关键动作的连续12帧序列（15fps）；非全片逐帧或声音同步验收。",
+    "limitations": "摄影内部运动、原始三维模型和精确关键帧未恢复；参考近似重建。"
+  },
+  "documents": {
+    "json": "/usage/eagle-myna-20260922-1.0.0.json",
+    "markdown": "/usage/eagle-myna-20260922-1.0.0.md"
+  }
+}

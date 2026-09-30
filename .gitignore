@@ -1,0 +1,13 @@
+node_modules
+.env
+.env.*
+.DS_Store
+.runtime/
+*.log
+prototype/data/
+prototype/uploads/
+prototype/workflow/media/
+prototype/packages/
+*.tgz
+
+*.tar.gz

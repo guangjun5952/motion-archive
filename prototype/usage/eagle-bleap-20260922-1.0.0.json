@@ -1,0 +1,348 @@
+{
+  "schemaVersion": "asset-usage-1",
+  "version": "1.0.0",
+  "assetId": "eagle-bleap-20260922",
+  "assetVersion": "1.0.0",
+  "name": "Bleap · 金融品牌与空间卡片",
+  "summary": "29.20秒参考重建。Everything evolved → Money didn’t → So we rebuilt it → 标志旋转 → Spend 到 Earn 的网格移动 → Trade & withdraw → 支付卡片错峰 → 漂浮素材与 beyond money → 品牌落位 → 下载提示。",
+  "useWhen": [
+    "表达产品重构、支付收益和品牌发布"
+  ],
+  "avoidWhen": [
+    "要求摄影素材、品牌标志与原片完全一致"
+  ],
+  "keywords": [
+    "Eagle",
+    "2026-09-22",
+    "bleap",
+    "横屏",
+    "竖屏",
+    "纯动效",
+    "表达产品重构、支付收益和品牌发布"
+  ],
+  "capacity": "固定品牌句、9格背景、4张支付卡及10个漂浮元素。 文案在镜头源码内修改；新文字需要测量和视觉复核，未开放自动排版参数。",
+  "duration": {
+    "seconds": 29.2,
+    "frames": 876,
+    "fps": 30,
+    "policy": "fixed",
+    "note": "改变总时长需同时调整各镜头时点、曝光和原音轨，不提供 duration prop。"
+  },
+  "parameters": [
+    {
+      "key": "variant",
+      "label": "画幅和绘制模式",
+      "mode": "selection",
+      "binding": "src/Root.tsx :: Root / Composition",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "styled-portrait",
+          "motion-portrait",
+          "styled",
+          "motion"
+        ]
+      },
+      "default": "styled",
+      "note": "每个变体有独立包；修改 Composition 尺寸不能代替适配。"
+    },
+    {
+      "key": "sceneCopy",
+      "label": "逐镜文案修改说明",
+      "mode": "source-edit",
+      "binding": "src/Bleap.tsx :: Bleap",
+      "schema": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      },
+      "note": "这是派生源码的修改要求，不是运行时 prop。需逐处替换字面量、检查容量，再由同一时序生成几何版。"
+    },
+    {
+      "key": "motionCurves",
+      "label": "弹簧与缓动源码",
+      "mode": "source-edit",
+      "binding": "src/math.ts :: bounce / ease / track",
+      "schema": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1000
+      },
+      "note": "按镜头调整调用值；不是全片统一阻尼参数，也没有自动修改器。"
+    }
+  ],
+  "variants": [
+    {
+      "id": "styled-portrait",
+      "kind": "template",
+      "aspect": "portrait",
+      "mode": "styled",
+      "package": "/packages/eagle-bleap-20260922-portrait-styled-1.0.0.zip",
+      "runtime": {
+        "entry": "src/index.ts",
+        "file": "src/Root.tsx",
+        "export": "Film",
+        "compositionId": "bleap-portrait-styled",
+        "render": "npm run render",
+        "pipeline": "svg-temporal-5",
+        "sceneFile": "src/Bleap.tsx",
+        "sceneExport": "Bleap"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "package.json :: scripts.render",
+      "video": {
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "durationInFrames": 876
+      },
+      "preview": "/workflow/media/eagle-bleap-20260922-portrait-styled-1.0.0.mp4",
+      "packageSha256": "e023226a7ba60708286c4d50c4c6a03d8a9e1bceacb1470e4e9ed62e85b3fcbe"
+    },
+    {
+      "id": "motion-portrait",
+      "kind": "template",
+      "aspect": "portrait",
+      "mode": "motion",
+      "package": "/packages/eagle-bleap-20260922-portrait-motion-1.0.0.zip",
+      "runtime": {
+        "entry": "src/index.ts",
+        "file": "src/Root.tsx",
+        "export": "Film",
+        "compositionId": "bleap-portrait-motion",
+        "render": "npm run render",
+        "pipeline": "svg-temporal-5",
+        "sceneFile": "src/Bleap.tsx",
+        "sceneExport": "Bleap"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "package.json :: scripts.render",
+      "video": {
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "durationInFrames": 876
+      },
+      "preview": "/workflow/media/eagle-bleap-20260922-portrait-motion-1.0.0.mp4",
+      "packageSha256": "aae0e449903ae95cbc8920818150615b47e4848b55609f456d726b56dd419d88"
+    },
+    {
+      "id": "styled",
+      "kind": "template",
+      "aspect": "landscape",
+      "mode": "styled",
+      "package": "/packages/eagle-bleap-20260922-landscape-styled-1.0.0.zip",
+      "runtime": {
+        "entry": "src/index.ts",
+        "file": "src/Root.tsx",
+        "export": "Film",
+        "compositionId": "bleap-landscape-styled",
+        "render": "npm run render",
+        "pipeline": "svg-temporal-5",
+        "sceneFile": "src/Bleap.tsx",
+        "sceneExport": "Bleap"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "package.json :: scripts.render",
+      "video": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "durationInFrames": 876
+      },
+      "preview": "/workflow/media/eagle-bleap-20260922-landscape-styled-1.0.0.mp4",
+      "packageSha256": "64bae44ecdc07a0e5d3507170f3fc8710f18b044ab7f986cb4fef916cc8b6b8f"
+    },
+    {
+      "id": "motion",
+      "kind": "template",
+      "aspect": "landscape",
+      "mode": "motion",
+      "package": "/packages/eagle-bleap-20260922-landscape-motion-1.0.0.zip",
+      "runtime": {
+        "entry": "src/index.ts",
+        "file": "src/Root.tsx",
+        "export": "Film",
+        "compositionId": "bleap-landscape-motion",
+        "render": "npm run render",
+        "pipeline": "svg-temporal-5",
+        "sceneFile": "src/Bleap.tsx",
+        "sceneExport": "Bleap"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "package.json :: scripts.render",
+      "video": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "durationInFrames": 876
+      },
+      "preview": "/workflow/media/eagle-bleap-20260922-landscape-motion-1.0.0.mp4",
+      "packageSha256": "5b32b59ec9dd5ba04d9012da77fe0ba2d4d9c5978e392a93455b82340b7a49a5"
+    }
+  ],
+  "invocation": {
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "variant": {
+          "type": "string",
+          "enum": [
+            "styled-portrait",
+            "motion-portrait",
+            "styled",
+            "motion"
+          ]
+        },
+        "sourceInputs": {
+          "type": "object",
+          "properties": {
+            "sceneCopy": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "motionCurves": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "variant"
+      ],
+      "additionalProperties": false
+    },
+    "example": {
+      "variant": "styled"
+    }
+  },
+  "styleCompatibility": {
+    "automaticBinding": false,
+    "referenceStyleIds": [],
+    "note": "复刻外观随模板入口保存；材质、字体、背景在组件中显式绘制。几何分支可用于迁移运动，但未提供跨风格自动绑定。"
+  },
+  "limitations": [
+    "照片槽位使用程序化图形替代，未复制原片摄影内容。",
+    "卡片使用透视投影，部分转场与曲率为采样近似。",
+    "全部运动由帧时间决定；时点来自每秒2帧分镜采样及关键片段检查，不是原始关键帧恢复。",
+    "五子帧曝光累积保留速度方向拖尾；局部景深为分层模糊近似，非光线追踪。",
+    "纯动效入口替换文字/图像/材质为几何占位；源包仍含复刻绘制分支，不支持传 styleId 自动换风格。",
+    "横竖屏均有指定布局；不保证其他画幅或任意长度文字自动适配。",
+    "嵌入时须保留 src/Root.tsx 的 Film 曝光容器；直接使用单帧 Scene 组件会绕开运动模糊。"
+  ],
+  "evidence": {
+    "level": "agent-keyframe-and-continuous-sample-review",
+    "referenceSampling": "0.5 seconds; denser rendered transition samples at 15fps",
+    "source": "manifest.json / original Eagle file",
+    "render": {
+      "temporalSamples": 5,
+      "offsetsInFrames": [
+        -0.26,
+        -0.13,
+        0,
+        0.13,
+        0.26
+      ],
+      "exposureSpanFrames": 0.52
+    },
+    "userVisualApproval": false,
+    "record": "VERIFICATION.md",
+    "checkedAt": "2026-09-22T05:53:31.754Z",
+    "mediaChecks": {
+      "portrait-styled": {
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "frames": 876,
+        "audio": true,
+        "coverageFrames": [
+          40,
+          107,
+          164,
+          225,
+          322,
+          432,
+          537,
+          670,
+          775,
+          843
+        ],
+        "coverageImage": "./imports/eagle-20260922/verification/bleap-portrait-styled-coverage.jpg"
+      },
+      "portrait-motion": {
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "frames": 876,
+        "audio": false,
+        "coverageFrames": [
+          40,
+          107,
+          164,
+          225,
+          322,
+          432,
+          537,
+          670,
+          775,
+          843
+        ],
+        "coverageImage": "./imports/eagle-20260922/verification/bleap-portrait-motion-coverage.jpg"
+      },
+      "landscape-styled": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "frames": 876,
+        "audio": true,
+        "coverageFrames": [
+          40,
+          107,
+          164,
+          225,
+          322,
+          432,
+          537,
+          670,
+          775,
+          843
+        ],
+        "coverageImage": "./imports/eagle-20260922/verification/bleap-landscape-styled-coverage.jpg"
+      },
+      "landscape-motion": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "frames": 876,
+        "audio": false,
+        "coverageFrames": [
+          40,
+          107,
+          164,
+          225,
+          322,
+          432,
+          537,
+          670,
+          775,
+          843
+        ],
+        "coverageImage": "./imports/eagle-20260922/verification/bleap-landscape-motion-coverage.jpg"
+      }
+    },
+    "visualReview": "每镜中点构图抽样、原画幅关键动作的连续12帧序列（15fps）；非全片逐帧或声音同步验收。",
+    "limitations": "摄影内部运动、原始三维模型和精确关键帧未恢复；参考近似重建。"
+  },
+  "documents": {
+    "json": "/usage/eagle-bleap-20260922-1.0.0.json",
+    "markdown": "/usage/eagle-bleap-20260922-1.0.0.md"
+  }
+}

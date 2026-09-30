@@ -1,0 +1,11 @@
+{
+  "name": "motion-archive-prototype",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node workflow/server.mjs",
+    "prototype": "node server.mjs",
+    "test": "node --test workflow/*.test.mjs"
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "schemaVersion": "asset-usage-1",
+  "version": "1.0.0",
+  "assetId": "file-efd5124a-e365-4079-9248-3701c2661ec8",
+  "assetVersion": "1.0.0",
+  "summary": "深黑背景、翠绿竖条和亮光区域。",
+  "useWhen": [
+    "需要静态纹理或光场作为画面底层"
+  ],
+  "avoidWhen": [
+    "需要修改素材内部光效、物体或文字的独立图层"
+  ],
+  "parameters": [
+    {
+      "key": "fit",
+      "label": "填充方式",
+      "mode": "consumer",
+      "binding": "目标 Img / OffthreadVideo 的 style.objectFit",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "cover",
+          "contain"
+        ]
+      },
+      "default": "cover",
+      "note": "cover 可能裁切；contain 保留完整图像但可能留边。"
+    }
+  ],
+  "variants": [
+    {
+      "id": "file",
+      "kind": "background",
+      "file": "/uploads/file-efd5124a-e365-4079-9248-3701c2661ec8.jpg",
+      "sha256": "2387ae6fdc12df69cd0f6629b193239c1d7b9097d7ab1320f3a823bfe769c387",
+      "media": {
+        "width": 1080,
+        "height": 1920,
+        "duration": null,
+        "fps": null,
+        "hasAudio": false,
+        "sha256": "2387ae6fdc12df69cd0f6629b193239c1d7b9097d7ab1320f3a823bfe769c387"
+      }
+    }
+  ],
+  "invocation": {
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "variant": {
+          "type": "string",
+          "enum": [
+            "file"
+          ]
+        }
+      },
+      "required": [
+        "variant"
+      ],
+      "additionalProperties": false
+    },
+    "example": {
+      "variant": "file"
+    }
+  },
+  "limitations": [
+    "竖条方向固定；横向填充需要裁切或留边。",
+    "按原始画幅导入，未生成独立横竖屏构图版本；填充裁切不等于完成适配。",
+    "保留原文件像素与音轨，媒体内部内容不可分层编辑。"
+  ],
+  "evidence": {
+    "level": "file-import-and-sample-review",
+    "source": "Eagle 原文件",
+    "metadata": "ffprobe",
+    "sha256": "2387ae6fdc12df69cd0f6629b193239c1d7b9097d7ab1320f3a823bfe769c387",
+    "visual": "已查看原图。"
+  },
+  "name": "翠绿竖向光幕",
+  "keywords": [
+    "Eagle背景",
+    "静态背景",
+    "翠绿"
+  ],
+  "capacity": "单个1080 × 1920媒体文件，不含可编辑文字槽位。",
+  "duration": {
+    "seconds": 0,
+    "policy": "still-image",
+    "note": "静态图片，显示时长由目标工程决定。"
+  },
+  "dependencies": [
+    "目标 Remotion 工程的 Img 或 OffthreadVideo 媒体加载组件"
+  ],
+  "styleCompatibility": {
+    "automaticBinding": false,
+    "note": "媒体已烘焙，不能传风格 ID 改变内部配色。"
+  },
+  "documents": {
+    "json": "/usage/file-efd5124a-e365-4079-9248-3701c2661ec8-1.0.0.json",
+    "markdown": "/usage/file-efd5124a-e365-4079-9248-3701c2661ec8-1.0.0.md"
+  }
+}

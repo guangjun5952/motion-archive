@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "projects": [
+    {
+      "id": "finqube-001",
+      "title": "Finqube · 悬浮财务卡片",
+      "status": "in_review",
+      "createdAt": "2026-09-18T00:00:00.000Z",
+      "source": {
+        "eagleId": "MU6FJK2ODKVNH",
+        "name": "Introducing Finqube - A Freelancers Dream",
+        "path": "LOCAL_REFERENCE_PATH Finqube - A Freelancers Dream.mp4",
+        "url": "https://www.pinterest.com/pin/1132373900083525385/",
+        "duration": 45.353991,
+        "width": 720,
+        "height": 1280,
+        "fps": 60
+      },
+      "segment": {
+        "start": 19,
+        "end": 25,
+        "description": "卡片群 → 收入 → 发票 → 交易 → 拉远全景"
+      },
+      "reference": "/workflow/media/finqube-reference.mp4",
+      "revisions": [
+        {
+          "id": "v1",
+          "label": "v1 · 可编辑组件复现",
+          "video": "/workflow/media/finqube-v1.mp4",
+          "createdAt": "2026-09-18T00:00:00.000Z",
+          "notes": "纯帧驱动的 CSS 透视场景；卡片 UI 为可编辑重建。复现主运动结构，未声称逐像素一致。",
+          "limitations": [
+            "卡片细节和字体为近似重建，尚未人工确认相似度。",
+            "运动模糊使用速度关联的轻量模糊，不是速度矢量运动模糊。",
+            "当前是 2.5D CSS 透视场景，不是 Three.js 摄影机。",
+            "仅复现 19–25 秒片段；不含音频。"
+          ],
+          "runtime": "finqube-remotion/src/index.ts",
+          "review": {
+            "status": "pending",
+            "note": ""
+          },
+          "snapshot": "data/revisions/finqube-001/v1"
+        }
+      ],
+      "candidates": [
+        {
+          "id": "finqube-green",
+          "type": "style",
+          "name": "森林绿与荧光绿",
+          "description": "深绿画布、亮绿强调、白色界面卡片。",
+          "selected": true
+        },
+        {
+          "id": "finqube-atmosphere",
+          "type": "background",
+          "name": "绿色弥散光",
+          "description": "由当前帧确定位置的柔光层，可替换底色。",
+          "selected": true
+        },
+        {
+          "id": "finqube-cluster",
+          "type": "layout",
+          "name": "五卡空间分布",
+          "description": "收入、发票、交易、分类、支出五个空间槽位。",
+          "selected": true
+        },
+        {
+          "id": "finqube-tour",
+          "type": "motion",
+          "name": "卡片巡游与拉远",
+          "description": "单条连续相机曲线；依赖五卡布局，不作为任意布局通用动作。",
+          "selected": true
+        },
+        {
+          "id": "finqube-combo",
+          "type": "combo",
+          "name": "财务卡片巡游",
+          "description": "完整 6 秒组合，固定依赖版本，支持替换四组标题及主色。",
+          "selected": true
+        }
+      ]
+    }
+  ],
+  "assets": []
+}

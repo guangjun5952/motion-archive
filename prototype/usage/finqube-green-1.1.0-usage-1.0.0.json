@@ -1,0 +1,171 @@
+{
+  "schemaVersion": "asset-usage-1",
+  "version": "1.0.0",
+  "assetId": "finqube-green",
+  "assetVersion": "1.1.0",
+  "name": "森林绿与荧光绿",
+  "summary": "深绿画布、亮绿强调、白色界面卡片。",
+  "useWhen": [
+    "需要本风格的配色、文字外观和材质参考"
+  ],
+  "avoidWhen": [
+    "未经适配直接套用到所有模板",
+    "只传入风格 ID 就期待源码自动换肤"
+  ],
+  "keywords": [
+    "dark",
+    "accent",
+    "surface"
+  ],
+  "capacity": "风格不定义节点数量和时长，遵循目标模板容量。",
+  "duration": {
+    "seconds": 6,
+    "policy": "fixed-source-timing",
+    "note": "不是已验证的可拉伸时长。新口播不匹配时需调整派生工程并复核两版。"
+  },
+  "parameters": [
+    {
+      "key": "variant",
+      "label": "选择原复刻、纯动效或独立风格入口",
+      "mode": "selection",
+      "binding": "variants[id]",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "style"
+        ]
+      }
+    },
+    {
+      "key": "dark",
+      "label": "配色 dark",
+      "mode": "consumer",
+      "default": "#042f20",
+      "schema": {
+        "type": "string",
+        "pattern": "^#[0-9a-fA-F]{6}$"
+      },
+      "binding": "styleSpec.palette.dark",
+      "note": "供目标模板映射，不会自动修改模板中的硬编码颜色。"
+    },
+    {
+      "key": "accent",
+      "label": "配色 accent",
+      "mode": "consumer",
+      "default": "#d9ff83",
+      "schema": {
+        "type": "string",
+        "pattern": "^#[0-9a-fA-F]{6}$"
+      },
+      "binding": "styleSpec.palette.accent",
+      "note": "供目标模板映射，不会自动修改模板中的硬编码颜色。"
+    },
+    {
+      "key": "surface",
+      "label": "配色 surface",
+      "mode": "consumer",
+      "default": "#ffffff",
+      "schema": {
+        "type": "string",
+        "pattern": "^#[0-9a-fA-F]{6}$"
+      },
+      "binding": "styleSpec.palette.surface",
+      "note": "供目标模板映射，不会自动修改模板中的硬编码颜色。"
+    },
+    {
+      "key": "typography",
+      "label": "字体与材质映射",
+      "mode": "source-edit",
+      "schema": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 800
+      },
+      "binding": "src/Finqube.tsx；目标模板文字与材质组件",
+      "note": "先核对字体文件和目标组件，再做显式映射。"
+    }
+  ],
+  "variants": [
+    {
+      "id": "style",
+      "kind": "style",
+      "package": "/packages/finqube-001-1.1.0.zip",
+      "packageSha256": "07373b12e15aa24a05ad4b5609cb99650f0c9c903a16e66fc0ef6a858652d3e4",
+      "runtime": {
+        "entry": "src/Finqube.tsx",
+        "export": "defaults",
+        "file": "src/Finqube.tsx"
+      },
+      "install": "npm install",
+      "render": null,
+      "renderScript": "node src/render.mjs out.mp4",
+      "video": {
+        "fps": 60,
+        "width": 720,
+        "height": 1280,
+        "durationInFrames": 360,
+        "renderer": "remotion-css-perspective-webgl-lens",
+        "titleMaxLength": 28,
+        "notes": [
+          "鱼眼为径向桶形畸变近似，强度尚未按原片精确标定。",
+          "场景采用 CSS 透视，最终画面经 WebGL 镜头处理；源场景修改后需重新执行两遍渲染。",
+          "卡片细节、字体和运动模糊仍是近似重建。",
+          "仅复现 19–25 秒，无音频；v1、v2 保留用于对照。"
+        ]
+      },
+      "preview": "/workflow/media/finqube-v3.mp4"
+    }
+  ],
+  "invocation": {
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "variant": {
+          "type": "string",
+          "enum": [
+            "style"
+          ]
+        },
+        "sourceInputs": {
+          "type": "object",
+          "properties": {
+            "typography": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 800
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "variant"
+      ],
+      "additionalProperties": false
+    },
+    "example": {
+      "variant": "style"
+    }
+  },
+  "styleCompatibility": {
+    "automaticBinding": false,
+    "referenceStyleIds": [],
+    "note": "纯动效入口用于保留运动；绑定新风格仍需显式修改绘制层。"
+  },
+  "limitations": [
+    "鱼眼为径向桶形畸变近似，强度尚未按原片精确标定。",
+    "场景采用 CSS 透视，最终画面经 WebGL 镜头处理；源场景修改后需重新执行两遍渲染。",
+    "卡片细节、字体和运动模糊仍是近似重建。",
+    "仅复现 19–25 秒，无音频；v1、v2 保留用于对照。",
+    "sourceInputs 是给派生工程的修改要求，不是 Remotion props；当前不会自动应用源码修改。",
+    "只有明确列出的 runtime-prop 支持运行时传参；选择新风格、改变数量或时长不能默认为已支持。"
+  ],
+  "evidence": {
+    "level": "source-and-package-audit",
+    "auditedAt": "2026-09-21T09:15:00.515Z",
+    "sourceRevision": "v3",
+    "entry": "src/Finqube.tsx",
+    "sourceSha256": "358ab18bbc1d9efd1df84828cfc0d10361a099db6797afc37ef4570eca48c918",
+    "renderVerifiedThisChange": false
+  }
+}

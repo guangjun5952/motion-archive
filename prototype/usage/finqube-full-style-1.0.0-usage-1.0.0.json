@@ -1,0 +1,199 @@
+{
+  "schemaVersion": "asset-usage-1",
+  "version": "1.0.0",
+  "assetId": "finqube-full-style",
+  "assetVersion": "1.0.0",
+  "name": "森林绿与荧光绿 · 流动光场",
+  "summary": "深绿与浅绿场景、荧光引导球、白色财务卡片和六层流动光场。",
+  "useWhen": [
+    "需要本风格的配色、文字外观和材质参考"
+  ],
+  "avoidWhen": [
+    "未经适配直接套用到所有模板",
+    "只传入风格 ID 就期待源码自动换肤"
+  ],
+  "keywords": [
+    "dark",
+    "accent",
+    "surface",
+    "light",
+    "guide"
+  ],
+  "capacity": "风格不定义节点数量和时长，遵循目标模板容量。",
+  "duration": {
+    "seconds": 45.36666666666667,
+    "policy": "fixed-source-timing",
+    "note": "不是已验证的可拉伸时长。新口播不匹配时需调整派生工程并复核两版。"
+  },
+  "parameters": [
+    {
+      "key": "variant",
+      "label": "选择原复刻、纯动效或独立风格入口",
+      "mode": "selection",
+      "binding": "variants[id]",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "style"
+        ]
+      }
+    },
+    {
+      "key": "dark",
+      "label": "配色 dark",
+      "mode": "consumer",
+      "default": "#042f20",
+      "schema": {
+        "type": "string",
+        "pattern": "^#[0-9a-fA-F]{6}$"
+      },
+      "binding": "styleSpec.palette.dark",
+      "note": "供目标模板映射，不会自动修改模板中的硬编码颜色。"
+    },
+    {
+      "key": "accent",
+      "label": "配色 accent",
+      "mode": "consumer",
+      "default": "#d9ff83",
+      "schema": {
+        "type": "string",
+        "pattern": "^#[0-9a-fA-F]{6}$"
+      },
+      "binding": "styleSpec.palette.accent",
+      "note": "供目标模板映射，不会自动修改模板中的硬编码颜色。"
+    },
+    {
+      "key": "surface",
+      "label": "配色 surface",
+      "mode": "consumer",
+      "default": "#ffffff",
+      "schema": {
+        "type": "string",
+        "pattern": "^#[0-9a-fA-F]{6}$"
+      },
+      "binding": "styleSpec.palette.surface",
+      "note": "供目标模板映射，不会自动修改模板中的硬编码颜色。"
+    },
+    {
+      "key": "light",
+      "label": "配色 light",
+      "mode": "consumer",
+      "default": "#fbfff6",
+      "schema": {
+        "type": "string",
+        "pattern": "^#[0-9a-fA-F]{6}$"
+      },
+      "binding": "styleSpec.palette.light",
+      "note": "供目标模板映射，不会自动修改模板中的硬编码颜色。"
+    },
+    {
+      "key": "guide",
+      "label": "配色 guide",
+      "mode": "consumer",
+      "default": "#b5ff4e",
+      "schema": {
+        "type": "string",
+        "pattern": "^#[0-9a-fA-F]{6}$"
+      },
+      "binding": "styleSpec.palette.guide",
+      "note": "供目标模板映射，不会自动修改模板中的硬编码颜色。"
+    },
+    {
+      "key": "typography",
+      "label": "字体与材质映射",
+      "mode": "source-edit",
+      "schema": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 800
+      },
+      "binding": "src/Space.tsx；目标模板文字与材质组件",
+      "note": "先核对字体文件和目标组件，再做显式映射。"
+    }
+  ],
+  "variants": [
+    {
+      "id": "style",
+      "kind": "style",
+      "package": "/packages/finqube-full-001-1.0.0.zip",
+      "packageSha256": "1b9a6046066e4d922ee437e7bb25eaec7e649748b9d98edd1d51bb448c46fe4c",
+      "runtime": {
+        "entry": "src/Space.tsx",
+        "file": "src/Space.tsx",
+        "export": "LightField",
+        "props": {
+          "f": 0,
+          "light": false
+        }
+      },
+      "install": "npm install",
+      "render": null,
+      "renderScript": "node src/render.mjs out.mp4",
+      "video": {
+        "fps": 60,
+        "width": 720,
+        "height": 1280,
+        "durationInFrames": 2722,
+        "notes": [
+          "引导球及背景光路径根据原片采样重建，未达到逐帧精确匹配。",
+          "新增场景使用 CSS 透视与 Z 轴层级，不是 Three.js 网格场景。",
+          "字体、人物图标与界面细节仍是近似重建，尚未加入完整物理快门模糊。",
+          "19–25 秒继续复用已确认的鱼眼巡游，未修改该片段。"
+        ]
+      },
+      "preview": "/workflow/media/finqube-full-v2.mp4"
+    }
+  ],
+  "invocation": {
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "variant": {
+          "type": "string",
+          "enum": [
+            "style"
+          ]
+        },
+        "sourceInputs": {
+          "type": "object",
+          "properties": {
+            "typography": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 800
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "variant"
+      ],
+      "additionalProperties": false
+    },
+    "example": {
+      "variant": "style"
+    }
+  },
+  "styleCompatibility": {
+    "automaticBinding": false,
+    "referenceStyleIds": [],
+    "note": "纯动效入口用于保留运动；绑定新风格仍需显式修改绘制层。"
+  },
+  "limitations": [
+    "引导球及背景光路径根据原片采样重建，未达到逐帧精确匹配。",
+    "新增场景使用 CSS 透视与 Z 轴层级，不是 Three.js 网格场景。",
+    "字体、人物图标与界面细节仍是近似重建，尚未加入完整物理快门模糊。",
+    "19–25 秒继续复用已确认的鱼眼巡游，未修改该片段。",
+    "sourceInputs 是给派生工程的修改要求，不是 Remotion props；当前不会自动应用源码修改。",
+    "只有明确列出的 runtime-prop 支持运行时传参；选择新风格、改变数量或时长不能默认为已支持。"
+  ],
+  "evidence": {
+    "level": "source-and-package-audit",
+    "auditedAt": "2026-09-21T09:15:00.654Z",
+    "sourceRevision": "v2",
+    "entry": "src/Space.tsx",
+    "sourceSha256": "9995022e1e911b9fc4c70b06bc22e84e6e5079848653179974b344dd5a76592f",
+    "renderVerifiedThisChange": false
+  }
+}

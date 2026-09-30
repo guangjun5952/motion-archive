@@ -1,0 +1,315 @@
+{
+  "schemaVersion": "asset-usage-1",
+  "version": "1.0.0",
+  "assetId": "finqube-combo",
+  "assetVersion": "1.1.0",
+  "name": "财务卡片巡游",
+  "summary": "五张财务卡片空间巡游，依次突出收入、发票、交易，最后拉远总览。",
+  "useWhen": [
+    "连续介绍多个财务功能",
+    "从局部数据推进到整体业务视图"
+  ],
+  "avoidWhen": [
+    "单个数值上涨或下降",
+    "任意数量卡片的自由排列"
+  ],
+  "keywords": [
+    "财务",
+    "多功能",
+    "巡游",
+    "总览"
+  ],
+  "capacity": "五卡布局固定；四组主体标题，前三组最多 28 字符、末组 40 字符（源码 schema 限制）。",
+  "duration": {
+    "seconds": 6,
+    "policy": "fixed-source-timing",
+    "note": "不是已验证的可拉伸时长。新口播不匹配时需调整派生工程并复核两版。"
+  },
+  "parameters": [
+    {
+      "key": "variant",
+      "label": "选择原复刻、纯动效或独立风格入口",
+      "mode": "selection",
+      "binding": "variants[id]",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "styled",
+          "motion"
+        ]
+      }
+    },
+    {
+      "key": "cardContent",
+      "label": "卡片内部数据",
+      "mode": "source-edit",
+      "schema": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 800
+      },
+      "binding": "src/Finqube.tsx :: Income / Invoice / Transactions / Categories / Breakdown",
+      "note": "公司、金额、分类仍是组件中的固定内容，需源码编辑。"
+    },
+    {
+      "key": "accent",
+      "label": "accent",
+      "mode": "runtime-prop",
+      "default": "#d9ff83",
+      "schema": {
+        "type": "string",
+        "pattern": "^#[0-9a-fA-F]{6}$"
+      },
+      "binding": "src/Root.tsx schema → src/Finqube.tsx / src/Lens.tsx",
+      "note": "仅 styled 入口已核对；两遍渲染脚本会将 --props 透传。"
+    },
+    {
+      "key": "dark",
+      "label": "dark",
+      "mode": "runtime-prop",
+      "default": "#042f20",
+      "schema": {
+        "type": "string",
+        "pattern": "^#[0-9a-fA-F]{6}$"
+      },
+      "binding": "src/Root.tsx schema → src/Finqube.tsx / src/Lens.tsx",
+      "note": "仅 styled 入口已核对；两遍渲染脚本会将 --props 透传。"
+    },
+    {
+      "key": "incomeTitle",
+      "label": "incomeTitle",
+      "mode": "runtime-prop",
+      "default": "Track Income",
+      "schema": {
+        "type": "string",
+        "maxLength": 28
+      },
+      "binding": "src/Root.tsx schema → src/Finqube.tsx / src/Lens.tsx",
+      "note": "仅 styled 入口已核对；两遍渲染脚本会将 --props 透传。"
+    },
+    {
+      "key": "invoiceTitle",
+      "label": "invoiceTitle",
+      "mode": "runtime-prop",
+      "default": "Manage Invoices",
+      "schema": {
+        "type": "string",
+        "maxLength": 28
+      },
+      "binding": "src/Root.tsx schema → src/Finqube.tsx / src/Lens.tsx",
+      "note": "仅 styled 入口已核对；两遍渲染脚本会将 --props 透传。"
+    },
+    {
+      "key": "transactionsTitle",
+      "label": "transactionsTitle",
+      "mode": "runtime-prop",
+      "default": "Organize Transactions",
+      "schema": {
+        "type": "string",
+        "maxLength": 28
+      },
+      "binding": "src/Root.tsx schema → src/Finqube.tsx / src/Lens.tsx",
+      "note": "仅 styled 入口已核对；两遍渲染脚本会将 --props 透传。"
+    },
+    {
+      "key": "endingTitle",
+      "label": "endingTitle",
+      "mode": "runtime-prop",
+      "default": "Understand\nBusiness",
+      "schema": {
+        "type": "string",
+        "maxLength": 40
+      },
+      "binding": "src/Root.tsx schema → src/Finqube.tsx / src/Lens.tsx",
+      "note": "仅 styled 入口已核对；两遍渲染脚本会将 --props 透传。"
+    },
+    {
+      "key": "motionBlur",
+      "label": "motionBlur",
+      "mode": "runtime-prop",
+      "default": true,
+      "schema": {
+        "type": "boolean"
+      },
+      "binding": "src/Root.tsx schema → src/Finqube.tsx / src/Lens.tsx",
+      "note": "仅 styled 入口已核对；两遍渲染脚本会将 --props 透传。"
+    },
+    {
+      "key": "fisheyeStrength",
+      "label": "fisheyeStrength",
+      "mode": "runtime-prop",
+      "default": 0.34,
+      "schema": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 0.6
+      },
+      "binding": "src/Root.tsx schema → src/Finqube.tsx / src/Lens.tsx",
+      "note": "仅 styled 入口已核对；两遍渲染脚本会将 --props 透传。"
+    }
+  ],
+  "variants": [
+    {
+      "id": "styled",
+      "kind": "template",
+      "package": "/packages/finqube-001-1.1.0.zip",
+      "packageSha256": "07373b12e15aa24a05ad4b5609cb99650f0c9c903a16e66fc0ef6a858652d3e4",
+      "runtime": {
+        "entry": "src/index.ts",
+        "export": "LensVideo",
+        "file": "src/Lens.tsx",
+        "compositionId": "FinqubeFisheye",
+        "render": "node src/render.mjs out.mp4",
+        "pipeline": "fisheye-two-pass"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "node src/render.mjs out.mp4",
+      "video": {
+        "fps": 60,
+        "width": 720,
+        "height": 1280,
+        "durationInFrames": 360,
+        "renderer": "remotion-css-perspective-webgl-lens",
+        "titleMaxLength": 28,
+        "notes": [
+          "鱼眼为径向桶形畸变近似，强度尚未按原片精确标定。",
+          "场景采用 CSS 透视，最终画面经 WebGL 镜头处理；源场景修改后需重新执行两遍渲染。",
+          "卡片细节、字体和运动模糊仍是近似重建。",
+          "仅复现 19–25 秒，无音频；v1、v2 保留用于对照。"
+        ]
+      },
+      "preview": "/workflow/media/finqube-v3.mp4",
+      "runtimePropsInvocation": "node src/render.mjs out.mp4 --props=props.json"
+    },
+    {
+      "id": "motion",
+      "kind": "template",
+      "package": "/packages/finqube-combo-motion-1.0.0.zip",
+      "packageSha256": "f6c89e020e3619418c2f6300075c54d1becbd555c1124da7f6291c9f23dcfc5e",
+      "runtime": {
+        "entry": "src/index.js",
+        "file": "src/Lens.js",
+        "export": "LensVideo",
+        "compositionId": "FinqubeFisheye",
+        "render": "npm run render",
+        "adapter": "src/neutral-react.js"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "node src/render.mjs out.mp4",
+      "video": {
+        "fps": 60,
+        "width": 720,
+        "height": 1280,
+        "durationInFrames": 360,
+        "renderer": "remotion-css-perspective-webgl-lens",
+        "titleMaxLength": 28,
+        "notes": [
+          "鱼眼为径向桶形畸变近似，强度尚未按原片精确标定。",
+          "场景采用 CSS 透视，最终画面经 WebGL 镜头处理；源场景修改后需重新执行两遍渲染。",
+          "卡片细节、字体和运动模糊仍是近似重建。",
+          "仅复现 19–25 秒，无音频；v1、v2 保留用于对照。"
+        ]
+      },
+      "preview": "/workflow/media/finqube-combo-motion-v1.mp4"
+    }
+  ],
+  "invocation": {
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "variant": {
+          "type": "string",
+          "enum": [
+            "styled",
+            "motion"
+          ]
+        },
+        "runtimeProps": {
+          "type": "object",
+          "properties": {
+            "accent": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "dark": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "incomeTitle": {
+              "type": "string",
+              "maxLength": 28
+            },
+            "invoiceTitle": {
+              "type": "string",
+              "maxLength": 28
+            },
+            "transactionsTitle": {
+              "type": "string",
+              "maxLength": 28
+            },
+            "endingTitle": {
+              "type": "string",
+              "maxLength": 40
+            },
+            "motionBlur": {
+              "type": "boolean"
+            },
+            "fisheyeStrength": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 0.6
+            }
+          },
+          "additionalProperties": false
+        },
+        "sourceInputs": {
+          "type": "object",
+          "properties": {
+            "cardContent": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 800
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "variant"
+      ],
+      "additionalProperties": false
+    },
+    "example": {
+      "variant": "styled",
+      "runtimeProps": {
+        "incomeTitle": "追踪收入",
+        "fisheyeStrength": 0.34
+      }
+    }
+  },
+  "styleCompatibility": {
+    "automaticBinding": false,
+    "referenceStyleIds": [
+      "finqube-green"
+    ],
+    "note": "纯动效入口用于保留运动；绑定新风格仍需显式修改绘制层。"
+  },
+  "limitations": [
+    "鱼眼为径向桶形畸变近似，强度尚未按原片精确标定。",
+    "场景采用 CSS 透视，最终画面经 WebGL 镜头处理；源场景修改后需重新执行两遍渲染。",
+    "卡片细节、字体和运动模糊仍是近似重建。",
+    "仅复现 19–25 秒，无音频；v1、v2 保留用于对照。",
+    "sourceInputs 是给派生工程的修改要求，不是 Remotion props；当前不会自动应用源码修改。",
+    "只有明确列出的 runtime-prop 支持运行时传参；选择新风格、改变数量或时长不能默认为已支持。"
+  ],
+  "evidence": {
+    "level": "source-and-package-audit",
+    "auditedAt": "2026-09-21T09:15:00.543Z",
+    "sourceRevision": "v3",
+    "entry": "src/Lens.tsx",
+    "sourceSha256": "9475fce8d3eb788160833b5979c9abc7fdd25e4066c8410aa66ec99569767daf",
+    "renderVerifiedThisChange": false
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "asset-usage-1",
+  "version": "1.0.0",
+  "assetId": "file-0afa1be6-6480-4566-9442-9f5ef7a838a3",
+  "assetVersion": "1.0.0",
+  "summary": "作为目标工程的字体文件加载，使用前检查实际字形覆盖。",
+  "useWhen": [
+    "需要当前字体外观的主体文字或标签"
+  ],
+  "avoidWhen": [
+    "未经检查直接认定支持所有中文、英文或字重"
+  ],
+  "parameters": [
+    {
+      "key": "fontFamily",
+      "label": "加载后的字体名称",
+      "mode": "consumer",
+      "binding": "FontFace + document.fonts.add；目标组件 fontFamily",
+      "default": "Archive_file_0afa1be6_6480_4566_9442_9f5ef7a838a3"
+    }
+  ],
+  "variants": [
+    {
+      "id": "file",
+      "kind": "font",
+      "file": "/uploads/file-0afa1be6-6480-4566-9442-9f5ef7a838a3.ttf"
+    }
+  ],
+  "invocation": {
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "variant": {
+          "type": "string",
+          "enum": [
+            "file"
+          ]
+        }
+      },
+      "required": [
+        "variant"
+      ],
+      "additionalProperties": false
+    },
+    "example": {
+      "variant": "file"
+    }
+  },
+  "limitations": [
+    "字形覆盖和授权范围未自动验证；字体替换后检查换行及排版。"
+  ],
+  "evidence": {
+    "level": "file-import",
+    "originalName": "yansong.ttf"
+  },
+  "name": "研宋"
+}

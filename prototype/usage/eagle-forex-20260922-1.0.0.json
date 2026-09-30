@@ -1,0 +1,353 @@
+{
+  "schemaVersion": "asset-usage-1",
+  "version": "1.0.0",
+  "assetId": "eagle-forex-20260922",
+  "assetVersion": "1.0.0",
+  "name": "Forex · 积分权益与产品奖励",
+  "summary": "29.17秒参考重建。开场提示 → 交易面板推入 → 搜索条与玻璃界面 → 资产列表掠过 → Loyalty Points → 积分光线 → 笔记本奖励 → 手机与交易屏 → 权益短句 → 品牌标志 → 参与提示。",
+  "useWhen": [
+    "介绍积分体系、奖励和产品权益"
+  ],
+  "avoidWhen": [
+    "展示真实交易结果或未经验证的收益承诺"
+  ],
+  "keywords": [
+    "Eagle",
+    "2026-09-22",
+    "forex",
+    "横屏",
+    "竖屏",
+    "纯动效",
+    "介绍积分体系、奖励和产品权益"
+  ],
+  "capacity": "固定投资面板、12行资产列表、8条积分光线和3个奖品场景。 文案在镜头源码内修改；新文字需要测量和视觉复核，未开放自动排版参数。",
+  "duration": {
+    "seconds": 29.166666666666668,
+    "frames": 875,
+    "fps": 30,
+    "policy": "fixed",
+    "note": "改变总时长需同时调整各镜头时点、曝光和原音轨，不提供 duration prop。"
+  },
+  "parameters": [
+    {
+      "key": "variant",
+      "label": "画幅和绘制模式",
+      "mode": "selection",
+      "binding": "src/Root.tsx :: Root / Composition",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "styled",
+          "motion",
+          "styled-landscape",
+          "motion-landscape"
+        ]
+      },
+      "default": "styled",
+      "note": "每个变体有独立包；修改 Composition 尺寸不能代替适配。"
+    },
+    {
+      "key": "sceneCopy",
+      "label": "逐镜文案修改说明",
+      "mode": "source-edit",
+      "binding": "src/Gates.tsx :: Forex",
+      "schema": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      },
+      "note": "这是派生源码的修改要求，不是运行时 prop。需逐处替换字面量、检查容量，再由同一时序生成几何版。"
+    },
+    {
+      "key": "motionCurves",
+      "label": "弹簧与缓动源码",
+      "mode": "source-edit",
+      "binding": "src/math.ts :: bounce / ease / track",
+      "schema": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1000
+      },
+      "note": "按镜头调整调用值；不是全片统一阻尼参数，也没有自动修改器。"
+    }
+  ],
+  "variants": [
+    {
+      "id": "styled",
+      "kind": "template",
+      "aspect": "portrait",
+      "mode": "styled",
+      "package": "/packages/eagle-forex-20260922-portrait-styled-1.0.0.zip",
+      "runtime": {
+        "entry": "src/index.ts",
+        "file": "src/Root.tsx",
+        "export": "Film",
+        "compositionId": "forex-portrait-styled",
+        "render": "npm run render",
+        "pipeline": "svg-temporal-5",
+        "sceneFile": "src/Gates.tsx",
+        "sceneExport": "Forex"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "package.json :: scripts.render",
+      "video": {
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "durationInFrames": 875
+      },
+      "preview": "/workflow/media/eagle-forex-20260922-portrait-styled-1.0.0.mp4",
+      "packageSha256": "8a609557074f3afbb153ebcd019ac690d2a0227fd496604983670cd1ab155ed6"
+    },
+    {
+      "id": "motion",
+      "kind": "template",
+      "aspect": "portrait",
+      "mode": "motion",
+      "package": "/packages/eagle-forex-20260922-portrait-motion-1.0.0.zip",
+      "runtime": {
+        "entry": "src/index.ts",
+        "file": "src/Root.tsx",
+        "export": "Film",
+        "compositionId": "forex-portrait-motion",
+        "render": "npm run render",
+        "pipeline": "svg-temporal-5",
+        "sceneFile": "src/Gates.tsx",
+        "sceneExport": "Forex"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "package.json :: scripts.render",
+      "video": {
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "durationInFrames": 875
+      },
+      "preview": "/workflow/media/eagle-forex-20260922-portrait-motion-1.0.0.mp4",
+      "packageSha256": "2d6f7c2aa053d837ae1d644bee01a9d73c8b29bebec71b06bfae9561696f49eb"
+    },
+    {
+      "id": "styled-landscape",
+      "kind": "template",
+      "aspect": "landscape",
+      "mode": "styled",
+      "package": "/packages/eagle-forex-20260922-landscape-styled-1.0.0.zip",
+      "runtime": {
+        "entry": "src/index.ts",
+        "file": "src/Root.tsx",
+        "export": "Film",
+        "compositionId": "forex-landscape-styled",
+        "render": "npm run render",
+        "pipeline": "svg-temporal-5",
+        "sceneFile": "src/Gates.tsx",
+        "sceneExport": "Forex"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "package.json :: scripts.render",
+      "video": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "durationInFrames": 875
+      },
+      "preview": "/workflow/media/eagle-forex-20260922-landscape-styled-1.0.0.mp4",
+      "packageSha256": "65cddb53a2e67d71cc6b6a670d52bbc121056ce2e2488ad8b179e2e3be36aceb"
+    },
+    {
+      "id": "motion-landscape",
+      "kind": "template",
+      "aspect": "landscape",
+      "mode": "motion",
+      "package": "/packages/eagle-forex-20260922-landscape-motion-1.0.0.zip",
+      "runtime": {
+        "entry": "src/index.ts",
+        "file": "src/Root.tsx",
+        "export": "Film",
+        "compositionId": "forex-landscape-motion",
+        "render": "npm run render",
+        "pipeline": "svg-temporal-5",
+        "sceneFile": "src/Gates.tsx",
+        "sceneExport": "Forex"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "package.json :: scripts.render",
+      "video": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "durationInFrames": 875
+      },
+      "preview": "/workflow/media/eagle-forex-20260922-landscape-motion-1.0.0.mp4",
+      "packageSha256": "4696f70c2abf73f3450f2beb08763dfc3b0b2debfa295c5e41a6cafb8796a1d5"
+    }
+  ],
+  "invocation": {
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "variant": {
+          "type": "string",
+          "enum": [
+            "styled",
+            "motion",
+            "styled-landscape",
+            "motion-landscape"
+          ]
+        },
+        "sourceInputs": {
+          "type": "object",
+          "properties": {
+            "sceneCopy": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "motionCurves": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "variant"
+      ],
+      "additionalProperties": false
+    },
+    "example": {
+      "variant": "styled"
+    }
+  },
+  "styleCompatibility": {
+    "automaticBinding": false,
+    "referenceStyleIds": [],
+    "note": "复刻外观随模板入口保存；材质、字体、背景在组件中显式绘制。几何分支可用于迁移运动，但未提供跨风格自动绑定。"
+  },
+  "limitations": [
+    "交易面板、产品设备、列表与品牌标志为近似重建。",
+    "光线、玻璃和蓝色背景是SVG合成，并非真实体积光或光线追踪。",
+    "全部运动由帧时间决定；时点来自每秒2帧分镜采样及关键片段检查，不是原始关键帧恢复。",
+    "五子帧曝光累积保留速度方向拖尾；局部景深为分层模糊近似，非光线追踪。",
+    "纯动效入口替换文字/图像/材质为几何占位；源包仍含复刻绘制分支，不支持传 styleId 自动换风格。",
+    "横竖屏均有指定布局；不保证其他画幅或任意长度文字自动适配。",
+    "嵌入时须保留 src/Root.tsx 的 Film 曝光容器；直接使用单帧 Scene 组件会绕开运动模糊。"
+  ],
+  "evidence": {
+    "level": "agent-keyframe-and-continuous-sample-review",
+    "referenceSampling": "0.5 seconds; denser rendered transition samples at 15fps",
+    "source": "manifest.json / original Eagle file",
+    "render": {
+      "temporalSamples": 5,
+      "offsetsInFrames": [
+        -0.26,
+        -0.13,
+        0,
+        0.13,
+        0.26
+      ],
+      "exposureSpanFrames": 0.52
+    },
+    "userVisualApproval": false,
+    "record": "VERIFICATION.md",
+    "correctionSource": "imports/eagle-20260922/lens-correction/src",
+    "checkedAt": "2026-09-22T05:53:31.813Z",
+    "mediaChecks": {
+      "portrait-styled": {
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "frames": 875,
+        "audio": true,
+        "coverageFrames": [
+          45,
+          135,
+          226,
+          309,
+          390,
+          472,
+          537,
+          597,
+          690,
+          780,
+          843
+        ],
+        "coverageImage": "./imports/eagle-20260922/verification/forex-portrait-styled-coverage.jpg"
+      },
+      "portrait-motion": {
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "frames": 875,
+        "audio": false,
+        "coverageFrames": [
+          45,
+          135,
+          226,
+          309,
+          390,
+          472,
+          537,
+          597,
+          690,
+          780,
+          843
+        ],
+        "coverageImage": "./imports/eagle-20260922/verification/forex-portrait-motion-coverage.jpg"
+      },
+      "landscape-styled": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "frames": 875,
+        "audio": true,
+        "coverageFrames": [
+          45,
+          135,
+          226,
+          309,
+          390,
+          472,
+          537,
+          597,
+          690,
+          780,
+          843
+        ],
+        "coverageImage": "./imports/eagle-20260922/verification/forex-landscape-styled-coverage.jpg"
+      },
+      "landscape-motion": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "frames": 875,
+        "audio": false,
+        "coverageFrames": [
+          45,
+          135,
+          226,
+          309,
+          390,
+          472,
+          537,
+          597,
+          690,
+          780,
+          843
+        ],
+        "coverageImage": "./imports/eagle-20260922/verification/forex-landscape-motion-coverage.jpg"
+      }
+    },
+    "visualReview": "每镜中点构图抽样、原画幅关键动作的连续12帧序列（15fps）；非全片逐帧或声音同步验收。",
+    "limitations": "摄影内部运动、原始三维模型和精确关键帧未恢复；参考近似重建。"
+  },
+  "documents": {
+    "json": "/usage/eagle-forex-20260922-1.0.0.json",
+    "markdown": "/usage/eagle-forex-20260922-1.0.0.md"
+  }
+}

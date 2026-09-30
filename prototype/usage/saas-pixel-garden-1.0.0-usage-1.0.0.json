@@ -1,0 +1,219 @@
+{
+  "schemaVersion": "asset-usage-1",
+  "version": "1.0.0",
+  "assetId": "saas-pixel-garden",
+  "assetVersion": "1.0.0",
+  "name": "像素花园与荧光绿",
+  "summary": "暖橙窗架、鼠尾草绿背景、动态十字像素网格与荧光绿强调色。",
+  "useWhen": [
+    "需要本风格的配色、文字外观和材质参考"
+  ],
+  "avoidWhen": [
+    "未经适配直接套用到所有模板",
+    "只传入风格 ID 就期待源码自动换肤"
+  ],
+  "keywords": [
+    "light",
+    "accent",
+    "dark",
+    "ink",
+    "highlight",
+    "surface",
+    "orange"
+  ],
+  "capacity": "风格不定义节点数量和时长，遵循目标模板容量。",
+  "duration": {
+    "seconds": 27.583333333333332,
+    "policy": "fixed-source-timing",
+    "note": "不是已验证的可拉伸时长。新口播不匹配时需调整派生工程并复核两版。"
+  },
+  "parameters": [
+    {
+      "key": "variant",
+      "label": "选择原复刻、纯动效或独立风格入口",
+      "mode": "selection",
+      "binding": "variants[id]",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "style"
+        ]
+      }
+    },
+    {
+      "key": "light",
+      "label": "配色 light",
+      "mode": "consumer",
+      "default": "#f7f7f0",
+      "schema": {
+        "type": "string",
+        "pattern": "^#[0-9a-fA-F]{6}$"
+      },
+      "binding": "styleSpec.palette.light",
+      "note": "供目标模板映射，不会自动修改模板中的硬编码颜色。"
+    },
+    {
+      "key": "accent",
+      "label": "配色 accent",
+      "mode": "consumer",
+      "default": "#b6f334",
+      "schema": {
+        "type": "string",
+        "pattern": "^#[0-9a-fA-F]{6}$"
+      },
+      "binding": "styleSpec.palette.accent",
+      "note": "供目标模板映射，不会自动修改模板中的硬编码颜色。"
+    },
+    {
+      "key": "dark",
+      "label": "配色 dark",
+      "mode": "consumer",
+      "default": "#08110c",
+      "schema": {
+        "type": "string",
+        "pattern": "^#[0-9a-fA-F]{6}$"
+      },
+      "binding": "styleSpec.palette.dark",
+      "note": "供目标模板映射，不会自动修改模板中的硬编码颜色。"
+    },
+    {
+      "key": "ink",
+      "label": "配色 ink",
+      "mode": "consumer",
+      "default": "#294039",
+      "schema": {
+        "type": "string",
+        "pattern": "^#[0-9a-fA-F]{6}$"
+      },
+      "binding": "styleSpec.palette.ink",
+      "note": "供目标模板映射，不会自动修改模板中的硬编码颜色。"
+    },
+    {
+      "key": "highlight",
+      "label": "配色 highlight",
+      "mode": "consumer",
+      "default": "#d8fff0",
+      "schema": {
+        "type": "string",
+        "pattern": "^#[0-9a-fA-F]{6}$"
+      },
+      "binding": "styleSpec.palette.highlight",
+      "note": "供目标模板映射，不会自动修改模板中的硬编码颜色。"
+    },
+    {
+      "key": "surface",
+      "label": "配色 surface",
+      "mode": "consumer",
+      "default": "#68826a",
+      "schema": {
+        "type": "string",
+        "pattern": "^#[0-9a-fA-F]{6}$"
+      },
+      "binding": "styleSpec.palette.surface",
+      "note": "供目标模板映射，不会自动修改模板中的硬编码颜色。"
+    },
+    {
+      "key": "orange",
+      "label": "配色 orange",
+      "mode": "consumer",
+      "default": "#fb6b1d",
+      "schema": {
+        "type": "string",
+        "pattern": "^#[0-9a-fA-F]{6}$"
+      },
+      "binding": "styleSpec.palette.orange",
+      "note": "供目标模板映射，不会自动修改模板中的硬编码颜色。"
+    },
+    {
+      "key": "typography",
+      "label": "字体与材质映射",
+      "mode": "source-edit",
+      "schema": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 800
+      },
+      "binding": "src/Film.tsx；目标模板文字与材质组件",
+      "note": "先核对字体文件和目标组件，再做显式映射。"
+    }
+  ],
+  "variants": [
+    {
+      "id": "style",
+      "kind": "style",
+      "package": "/packages/saas-chat-001-1.0.0.zip",
+      "packageSha256": "10623e1ca475e410c173a216824d216d7245732ee0dd3195000657351114856a",
+      "runtime": {
+        "entry": "src/Film.tsx",
+        "file": "src/Film.tsx",
+        "export": "palette"
+      },
+      "install": "npm install",
+      "render": null,
+      "renderScript": "node src/render.mjs out.mp4",
+      "video": {
+        "fps": 60,
+        "width": 1920,
+        "height": 1080,
+        "durationInFrames": 1655,
+        "notes": [
+          "像素网格和背景层已程序化重建，但花园和游戏机仍不具备原片的摄影级材质。",
+          "照片内部运动未重建，海报数量和画面与原片仍有差异。",
+          "运镜与翻转时点依据采样估计，并非原工程关键帧恢复。"
+        ]
+      },
+      "preview": "/workflow/media/saas-chat-v2.mp4"
+    }
+  ],
+  "invocation": {
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "variant": {
+          "type": "string",
+          "enum": [
+            "style"
+          ]
+        },
+        "sourceInputs": {
+          "type": "object",
+          "properties": {
+            "typography": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 800
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "variant"
+      ],
+      "additionalProperties": false
+    },
+    "example": {
+      "variant": "style"
+    }
+  },
+  "styleCompatibility": {
+    "automaticBinding": false,
+    "referenceStyleIds": [],
+    "note": "纯动效入口用于保留运动；绑定新风格仍需显式修改绘制层。"
+  },
+  "limitations": [
+    "像素网格和背景层已程序化重建，但花园和游戏机仍不具备原片的摄影级材质。",
+    "照片内部运动未重建，海报数量和画面与原片仍有差异。",
+    "运镜与翻转时点依据采样估计，并非原工程关键帧恢复。",
+    "sourceInputs 是给派生工程的修改要求，不是 Remotion props；当前不会自动应用源码修改。",
+    "只有明确列出的 runtime-prop 支持运行时传参；选择新风格、改变数量或时长不能默认为已支持。"
+  ],
+  "evidence": {
+    "level": "source-and-package-audit",
+    "auditedAt": "2026-09-21T09:15:00.762Z",
+    "sourceRevision": "v2",
+    "entry": "src/Film.tsx",
+    "sourceSha256": "686c7e329b5a32c9d7a52226375bb5ca5cfc888028a9b10e9af2f7636adf713e",
+    "renderVerifiedThisChange": false
+  }
+}

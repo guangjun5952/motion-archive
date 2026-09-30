@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0",
+  "file": "motion-library-v1.0.0.tar.gz",
+  "url": "https://github.com/guangjun5952/motion-archive/releases/download/v1.0.0/motion-library-v1.0.0.tar.gz",
+  "sizeBytes": 804964626,
+  "sha256": "223d43a355f0fef249ee200837e7732009a61ad5f6b2d5772fd27e46c056e6a1",
+  "installDirectories": [
+    "prototype/data",
+    "prototype/packages",
+    "prototype/uploads",
+    "prototype/workflow/media"
+  ]
+}

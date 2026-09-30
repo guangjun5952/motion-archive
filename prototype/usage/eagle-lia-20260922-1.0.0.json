@@ -1,0 +1,361 @@
+{
+  "schemaVersion": "asset-usage-1",
+  "version": "1.0.0",
+  "assetId": "eagle-lia-20260922",
+  "assetVersion": "1.0.0",
+  "name": "LIA · 聊天自动化与霓虹图标",
+  "summary": "75.57秒参考重建。手机旋转推进、消息与蓝色引导物 → 短语错峰 → 红色否定与黄色交易图标 → 响应速度与真实性短语 → 确认与日历 → 聊天气泡逐项进入 → 异议、信号与交易 → 报告与交易 → 节点与应用图标 → 手机再推进 → 行业图标环 → 紫色盒子与行动词 → 黄色交易图标收尾。",
+  "useWhen": [
+    "解释聊天响应、自动化服务与多行业覆盖"
+  ],
+  "avoidWhen": [
+    "要求原品牌图标和手机真实三维模型完全一致"
+  ],
+  "keywords": [
+    "Eagle",
+    "2026-09-22",
+    "lia",
+    "横屏",
+    "竖屏",
+    "纯动效",
+    "解释聊天响应、自动化服务与多行业覆盖"
+  ],
+  "capacity": "固定聊天气泡 6 个、行业图标环 8 个；其他数量需源码重排。 文案在镜头源码内修改；新文字需要测量和视觉复核，未开放自动排版参数。",
+  "duration": {
+    "seconds": 75.56666666666666,
+    "frames": 2267,
+    "fps": 30,
+    "policy": "fixed",
+    "note": "改变总时长需同时调整各镜头时点、曝光和原音轨，不提供 duration prop。"
+  },
+  "parameters": [
+    {
+      "key": "variant",
+      "label": "画幅和绘制模式",
+      "mode": "selection",
+      "binding": "src/Root.tsx :: Root / Composition",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "styled",
+          "motion",
+          "styled-landscape",
+          "motion-landscape"
+        ]
+      },
+      "default": "styled",
+      "note": "每个变体有独立包；修改 Composition 尺寸不能代替适配。"
+    },
+    {
+      "key": "sceneCopy",
+      "label": "逐镜文案修改说明",
+      "mode": "source-edit",
+      "binding": "src/Lia.tsx :: Lia",
+      "schema": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      },
+      "note": "这是派生源码的修改要求，不是运行时 prop。需逐处替换字面量、检查容量，再由同一时序生成几何版。"
+    },
+    {
+      "key": "motionCurves",
+      "label": "弹簧与缓动源码",
+      "mode": "source-edit",
+      "binding": "src/math.ts :: bounce / ease / track",
+      "schema": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1000
+      },
+      "note": "按镜头调整调用值；不是全片统一阻尼参数，也没有自动修改器。"
+    }
+  ],
+  "variants": [
+    {
+      "id": "styled",
+      "kind": "template",
+      "aspect": "portrait",
+      "mode": "styled",
+      "package": "/packages/eagle-lia-20260922-portrait-styled-1.0.0.zip",
+      "runtime": {
+        "entry": "src/index.ts",
+        "file": "src/Root.tsx",
+        "export": "Film",
+        "compositionId": "lia-portrait-styled",
+        "render": "npm run render",
+        "pipeline": "svg-temporal-5",
+        "sceneFile": "src/Lia.tsx",
+        "sceneExport": "Lia"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "package.json :: scripts.render",
+      "video": {
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "durationInFrames": 2267
+      },
+      "preview": "/workflow/media/eagle-lia-20260922-portrait-styled-1.0.0.mp4",
+      "packageSha256": "09af385457966d1e947ef8b8cf33b1fd03209758b52b13c019714e68d3114408"
+    },
+    {
+      "id": "motion",
+      "kind": "template",
+      "aspect": "portrait",
+      "mode": "motion",
+      "package": "/packages/eagle-lia-20260922-portrait-motion-1.0.0.zip",
+      "runtime": {
+        "entry": "src/index.ts",
+        "file": "src/Root.tsx",
+        "export": "Film",
+        "compositionId": "lia-portrait-motion",
+        "render": "npm run render",
+        "pipeline": "svg-temporal-5",
+        "sceneFile": "src/Lia.tsx",
+        "sceneExport": "Lia"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "package.json :: scripts.render",
+      "video": {
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "durationInFrames": 2267
+      },
+      "preview": "/workflow/media/eagle-lia-20260922-portrait-motion-1.0.0.mp4",
+      "packageSha256": "2f7d83dce42976cf87c96896444bb7b551507669ee8657976808ed50a90f336e"
+    },
+    {
+      "id": "styled-landscape",
+      "kind": "template",
+      "aspect": "landscape",
+      "mode": "styled",
+      "package": "/packages/eagle-lia-20260922-landscape-styled-1.0.0.zip",
+      "runtime": {
+        "entry": "src/index.ts",
+        "file": "src/Root.tsx",
+        "export": "Film",
+        "compositionId": "lia-landscape-styled",
+        "render": "npm run render",
+        "pipeline": "svg-temporal-5",
+        "sceneFile": "src/Lia.tsx",
+        "sceneExport": "Lia"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "package.json :: scripts.render",
+      "video": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "durationInFrames": 2267
+      },
+      "preview": "/workflow/media/eagle-lia-20260922-landscape-styled-1.0.0.mp4",
+      "packageSha256": "361a4a7ee8459cb85495a4718c0bb1d07fa600c40a0bb575d429e80a7d40b13b"
+    },
+    {
+      "id": "motion-landscape",
+      "kind": "template",
+      "aspect": "landscape",
+      "mode": "motion",
+      "package": "/packages/eagle-lia-20260922-landscape-motion-1.0.0.zip",
+      "runtime": {
+        "entry": "src/index.ts",
+        "file": "src/Root.tsx",
+        "export": "Film",
+        "compositionId": "lia-landscape-motion",
+        "render": "npm run render",
+        "pipeline": "svg-temporal-5",
+        "sceneFile": "src/Lia.tsx",
+        "sceneExport": "Lia"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "package.json :: scripts.render",
+      "video": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "durationInFrames": 2267
+      },
+      "preview": "/workflow/media/eagle-lia-20260922-landscape-motion-1.0.0.mp4",
+      "packageSha256": "cbeef7b91ea9c013fb3ed052b08f3c2845f0452d6bb739bf0dbf72fcca184897"
+    }
+  ],
+  "invocation": {
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "variant": {
+          "type": "string",
+          "enum": [
+            "styled",
+            "motion",
+            "styled-landscape",
+            "motion-landscape"
+          ]
+        },
+        "sourceInputs": {
+          "type": "object",
+          "properties": {
+            "sceneCopy": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "motionCurves": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "variant"
+      ],
+      "additionalProperties": false
+    },
+    "example": {
+      "variant": "styled"
+    }
+  },
+  "styleCompatibility": {
+    "automaticBinding": false,
+    "referenceStyleIds": [],
+    "note": "复刻外观随模板入口保存；材质、字体、背景在组件中显式绘制。几何分支可用于迁移运动，但未提供跨风格自动绑定。"
+  },
+  "limitations": [
+    "霓虹图标与行业标识是矢量近似，未还原原始模型和品牌图标。",
+    "聊天截图改为可编辑文本与气泡；葡语内容只保留可辨认部分。",
+    "手机使用简化透视投影，非完整三维 iPhone 模型。",
+    "全部运动由帧时间决定；时点来自每秒2帧分镜采样及关键片段检查，不是原始关键帧恢复。",
+    "五子帧曝光累积保留速度方向拖尾；局部景深为分层模糊近似，非光线追踪。",
+    "纯动效入口替换文字/图像/材质为几何占位；源包仍含复刻绘制分支，不支持传 styleId 自动换风格。",
+    "横竖屏均有指定布局；不保证其他画幅或任意长度文字自动适配。",
+    "嵌入时须保留 src/Root.tsx 的 Film 曝光容器；直接使用单帧 Scene 组件会绕开运动模糊。"
+  ],
+  "evidence": {
+    "level": "agent-keyframe-and-continuous-sample-review",
+    "referenceSampling": "0.5 seconds; denser rendered transition samples at 15fps",
+    "source": "manifest.json / original Eagle file",
+    "render": {
+      "temporalSamples": 5,
+      "offsetsInFrames": [
+        -0.26,
+        -0.13,
+        0,
+        0.13,
+        0.26
+      ],
+      "exposureSpanFrames": 0.52
+    },
+    "userVisualApproval": false,
+    "record": "VERIFICATION.md",
+    "checkedAt": "2026-09-22T05:53:31.633Z",
+    "mediaChecks": {
+      "portrait-styled": {
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "frames": 2267,
+        "audio": true,
+        "coverageFrames": [
+          51,
+          148,
+          298,
+          474,
+          633,
+          824,
+          1011,
+          1200,
+          1402,
+          1578,
+          1803,
+          2055,
+          2214
+        ],
+        "coverageImage": "./imports/eagle-20260922/verification/lia-portrait-styled-coverage.jpg"
+      },
+      "portrait-motion": {
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "frames": 2267,
+        "audio": false,
+        "coverageFrames": [
+          51,
+          148,
+          298,
+          474,
+          633,
+          824,
+          1011,
+          1200,
+          1402,
+          1578,
+          1803,
+          2055,
+          2214
+        ],
+        "coverageImage": "./imports/eagle-20260922/verification/lia-portrait-motion-coverage.jpg"
+      },
+      "landscape-styled": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "frames": 2267,
+        "audio": true,
+        "coverageFrames": [
+          51,
+          148,
+          298,
+          474,
+          633,
+          824,
+          1011,
+          1200,
+          1402,
+          1578,
+          1803,
+          2055,
+          2214
+        ],
+        "coverageImage": "./imports/eagle-20260922/verification/lia-landscape-styled-coverage.jpg"
+      },
+      "landscape-motion": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "frames": 2267,
+        "audio": false,
+        "coverageFrames": [
+          51,
+          148,
+          298,
+          474,
+          633,
+          824,
+          1011,
+          1200,
+          1402,
+          1578,
+          1803,
+          2055,
+          2214
+        ],
+        "coverageImage": "./imports/eagle-20260922/verification/lia-landscape-motion-coverage.jpg"
+      }
+    },
+    "visualReview": "每镜中点构图抽样、原画幅关键动作的连续12帧序列（15fps）；非全片逐帧或声音同步验收。",
+    "limitations": "摄影内部运动、原始三维模型和精确关键帧未恢复；参考近似重建。"
+  },
+  "documents": {
+    "json": "/usage/eagle-lia-20260922-1.0.0.json",
+    "markdown": "/usage/eagle-lia-20260922-1.0.0.md"
+  }
+}

@@ -1,0 +1,258 @@
+{
+  "schemaVersion": "asset-usage-1",
+  "version": "1.1.0",
+  "assetId": "saas-spatial-chat",
+  "assetVersion": "1.0.0",
+  "name": "SaaS Chat · 像素生成与空间画廊",
+  "summary": "输入卡片、生成按钮、编辑界面与双面画廊组成的 SaaS 产品演示。",
+  "useWhen": [
+    "AI 输入到生成结果的演示",
+    "软件编辑流程与多结果画廊展示"
+  ],
+  "avoidWhen": [
+    "无需软件界面的纯观点强调",
+    "期待照片内部具有真实运动"
+  ],
+  "keywords": [
+    "AI",
+    "生成",
+    "软件",
+    "画廊",
+    "输入",
+    "结果"
+  ],
+  "capacity": "15 镜头、画廊原有 40 层；数量变化需重新校准布局和遮挡。",
+  "duration": {
+    "seconds": 27.583333333333332,
+    "policy": "fixed-source-timing",
+    "note": "不是已验证的可拉伸时长。新口播不匹配时需调整派生工程并复核两版。"
+  },
+  "parameters": [
+    {
+      "key": "variant",
+      "label": "选择原复刻、纯动效或独立风格入口",
+      "mode": "selection",
+      "binding": "variants[id]",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "styled",
+          "motion",
+          "styled-portrait",
+          "motion-portrait"
+        ]
+      }
+    },
+    {
+      "key": "shotCopy",
+      "label": "输入和界面文案",
+      "mode": "source-edit",
+      "schema": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1800
+      },
+      "binding": "src/Film.tsx :: Chat / Generate / List / Words",
+      "note": "在每个组件中替换，不能假设统一 compositionProps 已存在。"
+    },
+    {
+      "key": "galleryMedia",
+      "label": "画廊图片替换要求",
+      "mode": "source-edit",
+      "schema": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1000
+      },
+      "binding": "src/Film.tsx :: Gallery",
+      "note": "替换 staticFile 所指素材；图片内部仍为静态。"
+    }
+  ],
+  "variants": [
+    {
+      "id": "styled",
+      "kind": "template",
+      "package": "/packages/saas-chat-001-1.0.0.zip",
+      "packageSha256": "10623e1ca475e410c173a216824d216d7245732ee0dd3195000657351114856a",
+      "runtime": {
+        "entry": "src/index.ts",
+        "file": "src/Film.tsx",
+        "export": "Film",
+        "compositionId": "SaasChat",
+        "render": "node src/render.mjs out.mp4",
+        "pipeline": "temporal-three-sample"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "node src/render.mjs out.mp4",
+      "video": {
+        "fps": 60,
+        "width": 1920,
+        "height": 1080,
+        "durationInFrames": 1655,
+        "notes": [
+          "像素网格和背景层已程序化重建，但花园和游戏机仍不具备原片的摄影级材质。",
+          "照片内部运动未重建，海报数量和画面与原片仍有差异。",
+          "运镜与翻转时点依据采样估计，并非原工程关键帧恢复。"
+        ]
+      },
+      "preview": "/workflow/media/saas-chat-v2.mp4",
+      "aspect": "landscape"
+    },
+    {
+      "id": "motion",
+      "kind": "template",
+      "package": "/packages/saas-spatial-chat-motion-1.0.0.zip",
+      "packageSha256": "74410f73432aa4b4b253c960f7e9bf466d4e7438fb9814f238fd0a00a4980504",
+      "runtime": {
+        "entry": "src/index.js",
+        "file": "src/Film.js",
+        "export": "Film",
+        "compositionId": "SaasChat",
+        "render": "npm run render",
+        "adapter": "src/neutral-react.js"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "node src/render.mjs out.mp4",
+      "video": {
+        "fps": 60,
+        "width": 1920,
+        "height": 1080,
+        "durationInFrames": 1655,
+        "notes": [
+          "像素网格和背景层已程序化重建，但花园和游戏机仍不具备原片的摄影级材质。",
+          "照片内部运动未重建，海报数量和画面与原片仍有差异。",
+          "运镜与翻转时点依据采样估计，并非原工程关键帧恢复。"
+        ]
+      },
+      "preview": "/workflow/media/saas-spatial-chat-motion-v1.mp4",
+      "aspect": "landscape"
+    },
+    {
+      "id": "styled-portrait",
+      "kind": "template",
+      "package": "/packages/saas-spatial-chat-portrait-styled-1.0.0.zip",
+      "packageSha256": "d417cf4c271d9bc24e8f648ad667f1e9564906378e518a7ab2961c2443a57459",
+      "runtime": {
+        "entry": "src/index.ts",
+        "file": "src/Film.tsx",
+        "export": "Film",
+        "compositionId": "SaasChat",
+        "render": "npm run render",
+        "pipeline": "temporal-three-sample"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "node render-aspect.mjs out.mp4",
+      "video": {
+        "width": 720,
+        "height": 1280,
+        "fps": 60,
+        "durationInFrames": 1655
+      },
+      "preview": "/workflow/media/saas-spatial-chat-portrait-styled-1.0.0.mp4",
+      "aspect": "portrait"
+    },
+    {
+      "id": "motion-portrait",
+      "kind": "template",
+      "package": "/packages/saas-spatial-chat-portrait-motion-1.0.0.zip",
+      "packageSha256": "f4060c7e0f8c4f603035da9857914a37ed90adb32c5db6dce014f1ea34ac52bc",
+      "runtime": {
+        "entry": "src/index.js",
+        "file": "src/Film.js",
+        "export": "Film",
+        "compositionId": "SaasChat",
+        "render": "npm run render",
+        "adapter": "src/neutral-react.js"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "node render-aspect.mjs out.mp4",
+      "video": {
+        "width": 720,
+        "height": 1280,
+        "fps": 60,
+        "durationInFrames": 1655
+      },
+      "preview": "/workflow/media/saas-spatial-chat-portrait-motion-1.0.0.mp4",
+      "aspect": "portrait"
+    }
+  ],
+  "invocation": {
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "variant": {
+          "type": "string",
+          "enum": [
+            "styled",
+            "motion",
+            "styled-portrait",
+            "motion-portrait"
+          ]
+        },
+        "sourceInputs": {
+          "type": "object",
+          "properties": {
+            "shotCopy": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1800
+            },
+            "galleryMedia": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "variant"
+      ],
+      "additionalProperties": false
+    },
+    "example": {
+      "variant": "styled"
+    }
+  },
+  "styleCompatibility": {
+    "automaticBinding": false,
+    "referenceStyleIds": [
+      "saas-pixel-garden"
+    ],
+    "note": "纯动效入口用于保留运动；绑定新风格仍需显式修改绘制层。"
+  },
+  "limitations": [
+    "像素网格和背景层已程序化重建，但花园和游戏机仍不具备原片的摄影级材质。",
+    "照片内部运动未重建，海报数量和画面与原片仍有差异。",
+    "运镜与翻转时点依据采样估计，并非原工程关键帧恢复。",
+    "文案、素材路径及运动参数在 src/Film.tsx 修改；尚未暴露统一 compositionProps。",
+    "风格配置记录 v2 外观，修改配置不会自动替换源码中的全部硬编码材质。",
+    "包中图片及音轨来自用户参考视频；照片内部为静态。",
+    "sourceInputs 是给派生工程的修改要求，不是 Remotion props；当前不会自动应用源码修改。",
+    "只有明确列出的 runtime-prop 支持运行时传参；选择新风格、改变数量或时长不能默认为已支持。",
+    "新增画幅按源码重新排布，仅覆盖 16:9 与 9:16；不是任意比例响应式。新画幅的文案与风格调整按源码修改，不自动接受原入口的 runtimeProps。"
+  ],
+  "evidence": {
+    "level": "source-and-package-audit",
+    "auditedAt": "2026-09-21T09:15:00.783Z",
+    "sourceRevision": "v2",
+    "entry": "src/Film.tsx",
+    "sourceSha256": "686c7e329b5a32c9d7a52226375bb5ca5cfc888028a9b10e9af2f7636adf713e",
+    "renderVerifiedThisChange": false,
+    "aspectAdaptation": {
+      "level": "rendered-and-continuous-frame-checked",
+      "aspect": "portrait",
+      "checkedAt": "2026-09-21T09:24:47.144Z",
+      "report": "aspect-variants/verification.md"
+    }
+  },
+  "documents": {
+    "json": "/usage/saas-spatial-chat-1.0.0-usage-1.1.0.json",
+    "markdown": "/usage/saas-spatial-chat-1.0.0-usage-1.1.0.md"
+  }
+}

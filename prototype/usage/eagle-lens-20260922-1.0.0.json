@@ -1,0 +1,337 @@
+{
+  "schemaVersion": "asset-usage-1",
+  "version": "1.0.0",
+  "assetId": "eagle-lens-20260922",
+  "assetVersion": "1.0.0",
+  "name": "Persistence · 放大镜焦点追踪",
+  "summary": "16.03秒参考重建。放大镜扫视 → You / find → what / you’re → looking / for → when / you → stay → persistent 聚焦与离开。",
+  "useWhen": [
+    "表现寻找信息、持续探索与从干扰中识别重点"
+  ],
+  "avoidWhen": [
+    "把局部清晰遮罩理解成真实镜头光线折射"
+  ],
+  "keywords": [
+    "Eagle",
+    "2026-09-22",
+    "lens",
+    "横屏",
+    "竖屏",
+    "纯动效",
+    "表现寻找信息、持续探索与从干扰中识别重点"
+  ],
+  "capacity": "10 个焦点词；背景固定 38 个干扰圆。 文案在镜头源码内修改；新文字需要测量和视觉复核，未开放自动排版参数。",
+  "duration": {
+    "seconds": 16.033333333333335,
+    "frames": 481,
+    "fps": 30,
+    "policy": "fixed",
+    "note": "改变总时长需同时调整各镜头时点、曝光和原音轨，不提供 duration prop。"
+  },
+  "parameters": [
+    {
+      "key": "variant",
+      "label": "画幅和绘制模式",
+      "mode": "selection",
+      "binding": "src/Root.tsx :: Root / Composition",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "styled",
+          "motion",
+          "styled-landscape",
+          "motion-landscape"
+        ]
+      },
+      "default": "styled",
+      "note": "每个变体有独立包；修改 Composition 尺寸不能代替适配。"
+    },
+    {
+      "key": "sceneCopy",
+      "label": "逐镜文案修改说明",
+      "mode": "source-edit",
+      "binding": "src/Lens.tsx :: Lens",
+      "schema": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      },
+      "note": "这是派生源码的修改要求，不是运行时 prop。需逐处替换字面量、检查容量，再由同一时序生成几何版。"
+    },
+    {
+      "key": "motionCurves",
+      "label": "弹簧与缓动源码",
+      "mode": "source-edit",
+      "binding": "src/math.ts :: bounce / ease / track",
+      "schema": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1000
+      },
+      "note": "按镜头调整调用值；不是全片统一阻尼参数，也没有自动修改器。"
+    }
+  ],
+  "variants": [
+    {
+      "id": "styled",
+      "kind": "template",
+      "aspect": "portrait",
+      "mode": "styled",
+      "package": "/packages/eagle-lens-20260922-portrait-styled-1.0.0.zip",
+      "runtime": {
+        "entry": "src/index.ts",
+        "file": "src/Root.tsx",
+        "export": "Film",
+        "compositionId": "lens-portrait-styled",
+        "render": "npm run render",
+        "pipeline": "svg-temporal-5",
+        "sceneFile": "src/Lens.tsx",
+        "sceneExport": "Lens"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "package.json :: scripts.render",
+      "video": {
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "durationInFrames": 481
+      },
+      "preview": "/workflow/media/eagle-lens-20260922-portrait-styled-1.0.0.mp4",
+      "packageSha256": "c24099a175c8669f0d8116fe1553a0364700ff5ba30467d3c8f6f4218d963eb0"
+    },
+    {
+      "id": "motion",
+      "kind": "template",
+      "aspect": "portrait",
+      "mode": "motion",
+      "package": "/packages/eagle-lens-20260922-portrait-motion-1.0.0.zip",
+      "runtime": {
+        "entry": "src/index.ts",
+        "file": "src/Root.tsx",
+        "export": "Film",
+        "compositionId": "lens-portrait-motion",
+        "render": "npm run render",
+        "pipeline": "svg-temporal-5",
+        "sceneFile": "src/Lens.tsx",
+        "sceneExport": "Lens"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "package.json :: scripts.render",
+      "video": {
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "durationInFrames": 481
+      },
+      "preview": "/workflow/media/eagle-lens-20260922-portrait-motion-1.0.0.mp4",
+      "packageSha256": "b5b5fbad4511b0bee4aeca571765804638c02b254cddcfb6c013dcb3e528a705"
+    },
+    {
+      "id": "styled-landscape",
+      "kind": "template",
+      "aspect": "landscape",
+      "mode": "styled",
+      "package": "/packages/eagle-lens-20260922-landscape-styled-1.0.0.zip",
+      "runtime": {
+        "entry": "src/index.ts",
+        "file": "src/Root.tsx",
+        "export": "Film",
+        "compositionId": "lens-landscape-styled",
+        "render": "npm run render",
+        "pipeline": "svg-temporal-5",
+        "sceneFile": "src/Lens.tsx",
+        "sceneExport": "Lens"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "package.json :: scripts.render",
+      "video": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "durationInFrames": 481
+      },
+      "preview": "/workflow/media/eagle-lens-20260922-landscape-styled-1.0.0.mp4",
+      "packageSha256": "3b9f2ed56bbac6afa7042a1e2a62167e8592490a3645c65c752e03f7dbf743a4"
+    },
+    {
+      "id": "motion-landscape",
+      "kind": "template",
+      "aspect": "landscape",
+      "mode": "motion",
+      "package": "/packages/eagle-lens-20260922-landscape-motion-1.0.0.zip",
+      "runtime": {
+        "entry": "src/index.ts",
+        "file": "src/Root.tsx",
+        "export": "Film",
+        "compositionId": "lens-landscape-motion",
+        "render": "npm run render",
+        "pipeline": "svg-temporal-5",
+        "sceneFile": "src/Lens.tsx",
+        "sceneExport": "Lens"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "package.json :: scripts.render",
+      "video": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "durationInFrames": 481
+      },
+      "preview": "/workflow/media/eagle-lens-20260922-landscape-motion-1.0.0.mp4",
+      "packageSha256": "fe50948067ff831b729f7e79b8dcab4a93902a8510aac77a5d3daef520a47d4d"
+    }
+  ],
+  "invocation": {
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "variant": {
+          "type": "string",
+          "enum": [
+            "styled",
+            "motion",
+            "styled-landscape",
+            "motion-landscape"
+          ]
+        },
+        "sourceInputs": {
+          "type": "object",
+          "properties": {
+            "sceneCopy": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "motionCurves": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "variant"
+      ],
+      "additionalProperties": false
+    },
+    "example": {
+      "variant": "styled"
+    }
+  },
+  "styleCompatibility": {
+    "automaticBinding": false,
+    "referenceStyleIds": [],
+    "note": "复刻外观随模板入口保存；材质、字体、背景在组件中显式绘制。几何分支可用于迁移运动，但未提供跨风格自动绑定。"
+  },
+  "limitations": [
+    "使用局部清晰遮罩和背景虚化，不是物理折射镜片。",
+    "按用户偏好省略原片上方旁白小字幕及账号页脚。",
+    "全部运动由帧时间决定；时点来自每秒2帧分镜采样及关键片段检查，不是原始关键帧恢复。",
+    "五子帧曝光累积保留速度方向拖尾；局部景深为分层模糊近似，非光线追踪。",
+    "纯动效入口替换文字/图像/材质为几何占位；源包仍含复刻绘制分支，不支持传 styleId 自动换风格。",
+    "横竖屏均有指定布局；不保证其他画幅或任意长度文字自动适配。",
+    "嵌入时须保留 src/Root.tsx 的 Film 曝光容器；直接使用单帧 Scene 组件会绕开运动模糊。"
+  ],
+  "evidence": {
+    "level": "agent-keyframe-and-continuous-sample-review",
+    "referenceSampling": "0.5 seconds; denser rendered transition samples at 15fps",
+    "source": "manifest.json / original Eagle file",
+    "render": {
+      "temporalSamples": 5,
+      "offsetsInFrames": [
+        -0.26,
+        -0.13,
+        0,
+        0.13,
+        0.26
+      ],
+      "exposureSpanFrames": 0.52
+    },
+    "userVisualApproval": false,
+    "record": "VERIFICATION.md",
+    "correctionSource": "imports/eagle-20260922/lens-correction/src",
+    "checkedAt": "2026-09-22T05:53:31.718Z",
+    "mediaChecks": {
+      "portrait-styled": {
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "frames": 481,
+        "audio": true,
+        "coverageFrames": [
+          11,
+          66,
+          148,
+          223,
+          296,
+          349,
+          423
+        ],
+        "coverageImage": "./imports/eagle-20260922/verification/lens-portrait-styled-coverage.jpg"
+      },
+      "portrait-motion": {
+        "width": 720,
+        "height": 1280,
+        "fps": 30,
+        "frames": 481,
+        "audio": false,
+        "coverageFrames": [
+          11,
+          66,
+          148,
+          223,
+          296,
+          349,
+          423
+        ],
+        "coverageImage": "./imports/eagle-20260922/verification/lens-portrait-motion-coverage.jpg"
+      },
+      "landscape-styled": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "frames": 481,
+        "audio": true,
+        "coverageFrames": [
+          11,
+          66,
+          148,
+          223,
+          296,
+          349,
+          423
+        ],
+        "coverageImage": "./imports/eagle-20260922/verification/lens-landscape-styled-coverage.jpg"
+      },
+      "landscape-motion": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "frames": 481,
+        "audio": false,
+        "coverageFrames": [
+          11,
+          66,
+          148,
+          223,
+          296,
+          349,
+          423
+        ],
+        "coverageImage": "./imports/eagle-20260922/verification/lens-landscape-motion-coverage.jpg"
+      }
+    },
+    "visualReview": "每镜中点构图抽样、原画幅关键动作的连续12帧序列（15fps）；非全片逐帧或声音同步验收。",
+    "limitations": "摄影内部运动、原始三维模型和精确关键帧未恢复；参考近似重建。"
+  },
+  "documents": {
+    "json": "/usage/eagle-lens-20260922-1.0.0.json",
+    "markdown": "/usage/eagle-lens-20260922-1.0.0.md"
+  }
+}

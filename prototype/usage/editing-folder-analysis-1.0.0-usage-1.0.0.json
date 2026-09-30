@@ -1,0 +1,188 @@
+{
+  "schemaVersion": "asset-usage-1",
+  "version": "1.0.0",
+  "assetId": "editing-folder-analysis",
+  "assetVersion": "1.0.0",
+  "name": "参考工程分析 · 文件夹展开",
+  "summary": "光标触发文件夹，三个文件沿弧线错峰展开，再横向移镜。",
+  "useWhen": [
+    "解释参考资料或工程的组成",
+    "展示一个文件夹中的三份材料"
+  ],
+  "avoidWhen": [
+    "超过三个文件且不改布局",
+    "把展开效果用于无文件关系的数字比较"
+  ],
+  "keywords": [
+    "文件夹",
+    "参考",
+    "分析",
+    "三份资料",
+    "展开"
+  ],
+  "capacity": "1 个文件夹、3 个文件；图标与扩展名绑定，替换需在 File 中完成。",
+  "duration": {
+    "seconds": 9.816666666666666,
+    "policy": "fixed-source-timing",
+    "note": "不是已验证的可拉伸时长。新口播不匹配时需调整派生工程并复核两版。"
+  },
+  "parameters": [
+    {
+      "key": "variant",
+      "label": "选择原复刻、纯动效或独立风格入口",
+      "mode": "selection",
+      "binding": "variants[id]",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "styled",
+          "motion"
+        ]
+      }
+    },
+    {
+      "key": "heading",
+      "label": "文件夹主体文字",
+      "mode": "source-edit",
+      "schema": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 20
+      },
+      "binding": "src/scene/index.tsx :: 参考工程分析",
+      "note": "修改原主体文字，不额外添加常驻标题。"
+    },
+    {
+      "key": "fileLabels",
+      "label": "三个文件说明",
+      "mode": "source-edit",
+      "schema": {
+        "type": "array",
+        "minItems": 3,
+        "maxItems": 3,
+        "items": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20
+        }
+      },
+      "binding": "src/scene/index.tsx :: function File",
+      "note": "保留三项顺序，核对 File 的标签和扩展名。"
+    }
+  ],
+  "variants": [
+    {
+      "id": "styled",
+      "kind": "template",
+      "package": "/packages/editing-folder-analysis-styled-1.0.0.zip",
+      "packageSha256": "377d8e8263fd7b3cc442cf1fc476275bf33acfb6f8e5dcad0ccdd26ef17062cc",
+      "runtime": {
+        "entry": "src/scene/index.tsx",
+        "file": "src/scene/index.tsx",
+        "export": "FolderScene",
+        "compositionId": "FolderAnalysis",
+        "render": "npm run render"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "node render.mjs",
+      "video": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 60,
+        "durationInFrames": 589,
+        "notes": [
+          "原工程以 SVG 二维变换与层级模糊模拟运镜，未使用真实三维摄像机；纯动效保留此实现，不新增物理三维。"
+        ]
+      },
+      "preview": "/workflow/media/editing-folder-analysis-styled-v1.mp4"
+    },
+    {
+      "id": "motion",
+      "kind": "template",
+      "package": "/packages/editing-folder-analysis-motion-1.0.0.zip",
+      "packageSha256": "d8c3a7988b0c1fc03ca8c076b6bd4588afe774b8805778acb0902cc1feb84dfb",
+      "runtime": {
+        "entry": "src/scene/index.js",
+        "file": "src/scene/index.js",
+        "export": "FolderScene",
+        "compositionId": "FolderAnalysis",
+        "render": "npm run render",
+        "adapter": "src/neutral-react.js"
+      },
+      "install": "npm install",
+      "render": "npm run render",
+      "renderScript": "node render.mjs",
+      "video": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 60,
+        "durationInFrames": 589,
+        "notes": [
+          "原工程以 SVG 二维变换与层级模糊模拟运镜，未使用真实三维摄像机；纯动效保留此实现，不新增物理三维。"
+        ]
+      },
+      "preview": "/workflow/media/editing-folder-analysis-motion-v1.mp4"
+    }
+  ],
+  "invocation": {
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "variant": {
+          "type": "string",
+          "enum": [
+            "styled",
+            "motion"
+          ]
+        },
+        "sourceInputs": {
+          "type": "object",
+          "properties": {
+            "heading": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 20
+            },
+            "fileLabels": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 3,
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 20
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "variant"
+      ],
+      "additionalProperties": false
+    },
+    "example": {
+      "variant": "styled"
+    }
+  },
+  "styleCompatibility": {
+    "automaticBinding": false,
+    "referenceStyleIds": [],
+    "note": "纯动效入口用于保留运动；绑定新风格仍需显式修改绘制层。"
+  },
+  "limitations": [
+    "原工程以 SVG 二维变换与层级模糊模拟运镜，未使用真实三维摄像机；纯动效保留此实现，不新增物理三维。",
+    "sourceInputs 是给派生工程的修改要求，不是 Remotion props；当前不会自动应用源码修改。",
+    "只有明确列出的 runtime-prop 支持运行时传参；选择新风格、改变数量或时长不能默认为已支持。"
+  ],
+  "evidence": {
+    "level": "source-and-package-audit",
+    "auditedAt": "2026-09-21T09:15:00.871Z",
+    "sourceRevision": "import-v1",
+    "entry": "src/scene/index.tsx",
+    "sourceSha256": "4a0442109f539f4707eaa2beefc3054a07ff6f0755f7825a893dfa207a4a6818",
+    "renderVerifiedThisChange": false
+  }
+}

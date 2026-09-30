@@ -1,0 +1,16 @@
+{
+  "name": "guangjun-motion-archive",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node prototype/workflow/server.mjs",
+    "test": "node --test prototype/workflow/*.test.mjs",
+    "usage-check": "node prototype/workflow/cli.mjs usage-check",
+    "setup": "node scripts/setup.mjs"
+  },
+  "license": "MIT"
+}
